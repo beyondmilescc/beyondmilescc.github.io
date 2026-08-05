@@ -230,6 +230,16 @@
             padding: 4rem 0 5rem;
         }
 
+        .hero-container {
+            display: flex;
+            flex-direction: column;
+            gap: 3rem;
+        }
+
+        .hero-content {
+            flex: 1;
+        }
+
         .eyebrow {
             font-size: 0.8125rem;
             font-weight: 600;
@@ -279,6 +289,23 @@
         .proof-line strong {
             color: var(--text-primary);
             font-weight: 600;
+        }
+
+        .hero-image-panel {
+            flex: 1;
+            min-height: 400px;
+            border-radius: 8px;
+            border: 1px solid var(--border-light);
+            box-shadow: var(--shadow-card);
+            overflow: hidden;
+        }
+
+        .hero-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: 72% center;
+            display: block;
         }
 
         .hero-visual {
@@ -697,6 +724,30 @@
                 font-size: 4rem;
             }
 
+            .hero-container {
+                flex-direction: row;
+                align-items: center;
+                gap: 4rem;
+            }
+
+            .hero-content {
+                flex: 1.1;
+            }
+
+            .hero-image-panel {
+                flex: 1;
+                min-height: 600px;
+                aspect-ratio: 4 / 5;
+            }
+
+            .hero-copy {
+                max-width: 100%;
+            }
+
+            .proof-line {
+                margin-bottom: 0;
+            }
+
             .section {
                 padding: 6rem 0;
             }
@@ -775,21 +826,29 @@
     <!-- Hero -->
     <section class="hero">
         <div class="container">
-            <div class="eyebrow">INDIA'S ENDURANCE HUB</div>
-            <h1 class="hero-title">Beyond Miles Hub</h1>
-            <p class="hero-subtitle">India's endurance calendar, built by riders.</p>
-            
-            <div class="hero-copy">
-                <p>Beyond Miles Hub brings India's endurance community into one place—the events, the progress, and the people behind the miles.</p>
-                <p style="margin-top: 1rem;">Discover what's happening, join the challenges that matter, and connect Strava to see your effort counted automatically, your progress at a glance, and live leaderboards updated as you go.</p>
-            </div>
+            <div class="hero-container">
+                <div class="hero-content">
+                    <div class="eyebrow">INDIA'S ENDURANCE HUB</div>
+                    <h1 class="hero-title">Beyond Miles Hub</h1>
+                    <p class="hero-subtitle">India's endurance calendar, built by riders.</p>
+                    
+                    <div class="hero-copy">
+                        <p>Beyond Miles Hub brings India's endurance community into one place—the events, the progress, and the people behind the miles.</p>
+                        <p style="margin-top: 1rem;">Discover what's happening, join the challenges that matter, and connect Strava to see your effort counted automatically, your progress at a glance, and live leaderboards updated as you go.</p>
+                    </div>
 
-            <div class="hero-actions">
-                <a href="/events" class="btn-primary">Browse Events</a>
-                <a href="https://hub.beyondmiles.cc" class="btn-secondary">Connect Strava</a>
-            </div>
+                    <div class="hero-actions">
+                        <a href="/events" class="btn-primary">Browse Events</a>
+                        <a href="https://hub.beyondmiles.cc" class="btn-secondary">Connect Strava</a>
+                    </div>
 
-            <p class="proof-line"><strong>1,000,000+ km</strong> ridden by the Beyond Miles community</p>
+                    <p class="proof-line"><strong>1,000,000+ km</strong> ridden by the Beyond Miles community</p>
+                </div>
+
+                <div class="hero-image-panel">
+                    <img src="../assets/images/beyond-miles-hub-hero.png" alt="Beyond Miles community riders on an early morning ride" class="hero-image">
+                </div>
+            </div>
 
             <div class="hero-visual">
                 <div class="visual-placeholder">
