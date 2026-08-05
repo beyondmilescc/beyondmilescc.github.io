@@ -111,17 +111,19 @@
             text-decoration: none;
             font-size: 0.9375rem;
             font-weight: 600;
-            border: none;
+            border: 1px solid var(--gold);
             cursor: pointer;
             transition: all 0.2s ease;
             display: inline-block;
-            min-width: 180px;
+            min-width: 210px;
             text-align: center;
+            box-sizing: border-box;
         }
 
         .btn-primary:hover,
         .btn-primary:focus {
             background: var(--gold-hover);
+            border-color: var(--gold-hover);
             transform: translateY(-1px);
             outline: 2px solid var(--gold);
             outline-offset: 2px;
@@ -135,12 +137,13 @@
             text-decoration: none;
             font-size: 0.9375rem;
             font-weight: 600;
-            border: 1.5px solid var(--border-light);
+            border: 1px solid var(--border-light);
             cursor: pointer;
             transition: all 0.2s ease;
             display: inline-block;
-            min-width: 180px;
+            min-width: 210px;
             text-align: center;
+            box-sizing: border-box;
         }
 
         .btn-secondary:hover,
@@ -163,8 +166,9 @@
             cursor: pointer;
             transition: all 0.2s ease;
             display: inline-block;
-            min-width: 180px;
+            min-width: 210px;
             text-align: center;
+            box-sizing: border-box;
         }
 
         .btn-strava:hover,
