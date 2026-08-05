@@ -1,0 +1,900 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Beyond Miles Hub - India's endurance calendar, built by riders. Discover events, track challenges, and connect with the endurance community.">
+    <title>Beyond Miles Hub - India's Endurance Calendar</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --warm-white: #FAF9F7;
+            --charcoal: #1A1A1A;
+            --charcoal-soft: #2D2D2D;
+            --text-primary: #1A1A1A;
+            --text-secondary: #4A4A4A;
+            --gold: #CBA45C;
+            --gold-hover: #B89147;
+            --border-light: #E5E5E5;
+            --shadow-subtle: 0 1px 3px rgba(0, 0, 0, 0.04);
+            --shadow-card: 0 2px 8px rgba(0, 0, 0, 0.06);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            html {
+                scroll-behavior: auto;
+            }
+            * {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background-color: var(--warm-white);
+            color: var(--text-primary);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* Header */
+        .header {
+            background: var(--warm-white);
+            border-bottom: 1px solid var(--border-light);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            transition: box-shadow 0.2s ease;
+        }
+
+        .header.scrolled {
+            box-shadow: var(--shadow-subtle);
+        }
+
+        .header-container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 1rem 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            text-decoration: none;
+            letter-spacing: -0.01em;
+        }
+
+        .nav-desktop {
+            display: none;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-link {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.9375rem;
+            font-weight: 500;
+            transition: color 0.2s ease;
+        }
+
+        .nav-link:hover,
+        .nav-link:focus {
+            color: var(--text-primary);
+            outline: none;
+        }
+
+        .btn-primary {
+            background: var(--gold);
+            color: var(--charcoal);
+            padding: 0.625rem 1.25rem;
+            border-radius: 6px;
+            text-decoration: none;
+            font-size: 0.9375rem;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: inline-block;
+        }
+
+        .btn-primary:hover,
+        .btn-primary:focus {
+            background: var(--gold-hover);
+            transform: translateY(-1px);
+            outline: 2px solid var(--gold);
+            outline-offset: 2px;
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--text-primary);
+            padding: 0.625rem 1.25rem;
+            border-radius: 6px;
+            text-decoration: none;
+            font-size: 0.9375rem;
+            font-weight: 600;
+            border: 1.5px solid var(--border-light);
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: inline-block;
+        }
+
+        .btn-secondary:hover,
+        .btn-secondary:focus {
+            border-color: var(--text-primary);
+            transform: translateY(-1px);
+            outline: 2px solid var(--text-primary);
+            outline-offset: 2px;
+        }
+
+        .mobile-menu-toggle {
+            display: block;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0.5rem;
+            color: var(--text-primary);
+        }
+
+        .mobile-menu-toggle:focus {
+            outline: 2px solid var(--gold);
+            outline-offset: 2px;
+            border-radius: 4px;
+        }
+
+        .hamburger {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .hamburger span {
+            width: 24px;
+            height: 2px;
+            background: var(--text-primary);
+            transition: all 0.3s ease;
+        }
+
+        .mobile-menu {
+            display: none;
+            background: var(--warm-white);
+            border-bottom: 1px solid var(--border-light);
+            padding: 1.5rem;
+        }
+
+        .mobile-menu.active {
+            display: block;
+            animation: slideDown 0.3s ease;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .mobile-nav {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .mobile-nav .nav-link {
+            padding: 0.75rem 0;
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .mobile-nav .btn-primary {
+            margin-top: 1rem;
+            text-align: center;
+        }
+
+        /* Container */
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        .section {
+            padding: 5rem 0;
+        }
+
+        /* Hero */
+        .hero {
+            padding: 4rem 0 5rem;
+        }
+
+        .eyebrow {
+            font-size: 0.8125rem;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 1rem;
+        }
+
+        .hero-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            line-height: 1.1;
+            letter-spacing: -0.02em;
+            margin-bottom: 1rem;
+        }
+
+        .hero-subtitle {
+            font-size: 1.5rem;
+            font-weight: 400;
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+            line-height: 1.3;
+        }
+
+        .hero-copy {
+            font-size: 1.125rem;
+            line-height: 1.7;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            max-width: 42rem;
+        }
+
+        .hero-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 3rem;
+        }
+
+        .proof-line {
+            font-size: 0.9375rem;
+            color: var(--text-secondary);
+            margin-bottom: 3rem;
+        }
+
+        .proof-line strong {
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+
+        .hero-visual {
+            background: white;
+            border: 1px solid var(--border-light);
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: var(--shadow-card);
+            margin-top: 3rem;
+        }
+
+        .visual-placeholder {
+            aspect-ratio: 16 / 10;
+            background: linear-gradient(135deg, #F5F5F5 0%, #FAFAFA 100%);
+            border-radius: 8px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .visual-placeholder-title {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .visual-placeholder-text {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+            max-width: 400px;
+        }
+
+        /* Section Headings */
+        .section-headline {
+            font-size: 2.25rem;
+            font-weight: 700;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+            margin-bottom: 1.5rem;
+        }
+
+        .section-copy {
+            font-size: 1.125rem;
+            line-height: 1.7;
+            color: var(--text-secondary);
+            max-width: 42rem;
+            margin-bottom: 3rem;
+        }
+
+        /* Community Section */
+        .community {
+            background: white;
+            border-top: 1px solid var(--border-light);
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        /* Cards */
+        .cards {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .card {
+            background: white;
+            border: 1px solid var(--border-light);
+            border-radius: 8px;
+            padding: 2rem;
+            transition: all 0.2s ease;
+        }
+
+        .card:hover {
+            box-shadow: var(--shadow-card);
+            transform: translateY(-2px);
+        }
+
+        .card-label {
+            font-size: 0.8125rem;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 1rem;
+        }
+
+        .card-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+            color: var(--text-primary);
+        }
+
+        .card-text {
+            font-size: 0.9375rem;
+            line-height: 1.6;
+            color: var(--text-secondary);
+        }
+
+        .card-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-top: 1rem;
+            color: var(--text-primary);
+            text-decoration: none;
+            font-size: 0.9375rem;
+            font-weight: 600;
+            transition: color 0.2s ease;
+        }
+
+        .card-link:hover,
+        .card-link:focus {
+            color: var(--gold);
+            outline: none;
+        }
+
+        .card-link::after {
+            content: '→';
+            transition: transform 0.2s ease;
+        }
+
+        .card-link:hover::after {
+            transform: translateX(4px);
+        }
+
+        /* Benefits List */
+        .benefits-list {
+            list-style: none;
+            margin: 2rem 0;
+        }
+
+        .benefits-list li {
+            padding: 0.75rem 0;
+            padding-left: 1.75rem;
+            position: relative;
+            font-size: 0.9375rem;
+            color: var(--text-secondary);
+        }
+
+        .benefits-list li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--gold);
+            font-weight: 600;
+        }
+
+        /* Organiser Section */
+        .organisers {
+            background: white;
+            border-top: 1px solid var(--border-light);
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: var(--charcoal);
+            color: var(--warm-white);
+            text-align: center;
+            padding: 5rem 0;
+        }
+
+        .cta-section .section-headline {
+            color: var(--warm-white);
+            max-width: 42rem;
+            margin-left: auto;
+            margin-right: auto;
+            margin-bottom: 2.5rem;
+        }
+
+        .cta-section .hero-actions {
+            justify-content: center;
+            margin-bottom: 0;
+        }
+
+        .cta-section .btn-secondary {
+            border-color: rgba(250, 249, 247, 0.3);
+            color: var(--warm-white);
+        }
+
+        .cta-section .btn-secondary:hover {
+            border-color: var(--warm-white);
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--charcoal-soft);
+            color: var(--warm-white);
+            padding: 3rem 0 2rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-brand {
+            margin-bottom: 1rem;
+        }
+
+        .footer-brand-name {
+            font-size: 1.125rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-tagline {
+            font-size: 0.9375rem;
+            color: rgba(250, 249, 247, 0.7);
+        }
+
+        .footer-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+        }
+
+        .footer-link {
+            color: rgba(250, 249, 247, 0.8);
+            text-decoration: none;
+            font-size: 0.9375rem;
+            transition: color 0.2s ease;
+        }
+
+        .footer-link:hover,
+        .footer-link:focus {
+            color: var(--warm-white);
+            outline: none;
+        }
+
+        .footer-bottom {
+            padding-top: 2rem;
+            border-top: 1px solid rgba(250, 249, 247, 0.1);
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            align-items: center;
+            text-align: center;
+        }
+
+        .footer-proof {
+            font-size: 0.875rem;
+            color: rgba(250, 249, 247, 0.6);
+        }
+
+        .footer-proof strong {
+            color: var(--gold);
+            font-weight: 600;
+        }
+
+        .footer-copyright {
+            font-size: 0.875rem;
+            color: rgba(250, 249, 247, 0.6);
+        }
+
+        .explainer-note {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+            margin-top: 2rem;
+            padding: 1rem 1.5rem;
+            background: rgba(203, 164, 92, 0.05);
+            border-left: 3px solid var(--gold);
+            border-radius: 4px;
+        }
+
+        /* Responsive */
+        @media (min-width: 768px) {
+            .nav-desktop {
+                display: flex;
+            }
+
+            .mobile-menu-toggle {
+                display: none;
+            }
+
+            .hero-title {
+                font-size: 3.5rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1.75rem;
+            }
+
+            .section-headline {
+                font-size: 2.75rem;
+            }
+
+            .cards {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr 2fr;
+            }
+
+            .footer-bottom {
+                flex-direction: row;
+                justify-content: space-between;
+                text-align: left;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .hero-title {
+                font-size: 4rem;
+            }
+
+            .section {
+                padding: 6rem 0;
+            }
+
+            .hero {
+                padding: 5rem 0 6rem;
+            }
+
+            .cards {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        /* Focus Styles */
+        *:focus-visible {
+            outline: 2px solid var(--gold);
+            outline-offset: 2px;
+            border-radius: 2px;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in {
+            animation: fadeIn 0.6s ease forwards;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header" id="header">
+        <div class="header-container">
+            <a href="#" class="logo">Beyond Miles Hub</a>
+            
+            <nav class="nav-desktop">
+                <a href="#" class="nav-link">Hub Home</a>
+                <a href="/events" class="nav-link">Events</a>
+                <a href="https://hub.beyondmiles.cc" class="nav-link">Challenges</a>
+                <a href="/services" class="nav-link">Services</a>
+                <a href="#organisers" class="nav-link">For Organisers</a>
+                <a href="#about" class="nav-link">About</a>
+                <a href="/events" class="btn-primary">Browse Events</a>
+            </nav>
+
+            <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Toggle mobile menu" aria-expanded="false">
+                <div class="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </button>
+        </div>
+
+        <div class="mobile-menu" id="mobileMenu">
+            <nav class="mobile-nav">
+                <a href="#" class="nav-link">Hub Home</a>
+                <a href="/events" class="nav-link">Events</a>
+                <a href="https://hub.beyondmiles.cc" class="nav-link">Challenges</a>
+                <a href="/services" class="nav-link">Services</a>
+                <a href="#organisers" class="nav-link">For Organisers</a>
+                <a href="#about" class="nav-link">About</a>
+                <a href="/events" class="btn-primary">Browse Events</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero -->
+    <section class="hero">
+        <div class="container">
+            <div class="eyebrow">INDIA'S ENDURANCE HUB</div>
+            <h1 class="hero-title">Beyond Miles Hub</h1>
+            <p class="hero-subtitle">India's endurance calendar, built by riders.</p>
+            
+            <div class="hero-copy">
+                <p>Beyond Miles Hub brings India's endurance community into one place—the events, the progress, and the people behind the miles.</p>
+                <p style="margin-top: 1rem;">Discover what's happening, join the challenges that matter, and connect Strava to see your effort counted automatically, your progress at a glance, and live leaderboards updated as you go.</p>
+            </div>
+
+            <div class="hero-actions">
+                <a href="/events" class="btn-primary">Browse Events</a>
+                <a href="https://hub.beyondmiles.cc" class="btn-secondary">Connect Strava</a>
+            </div>
+
+            <p class="proof-line"><strong>1,000,000+ km</strong> ridden by the Beyond Miles community</p>
+
+            <div class="hero-visual">
+                <div class="visual-placeholder">
+                    <div class="visual-placeholder-title">Challenge Progress Dashboard</div>
+                    <div class="visual-placeholder-text">Connect Strava to see your activities counted automatically, track progress across challenges, and follow live leaderboards.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Community Section -->
+    <section class="section community" id="about">
+        <div class="container">
+            <h2 class="section-headline">Built from the road up.</h2>
+            <p class="section-copy">Built by the team behind Beyond Miles Cycling Club, Hub is shaped by what athletes actually care about—more than numbers: a clear event calendar, brevet history, milestones, and progress that means something.</p>
+        </div>
+    </section>
+
+    <!-- Featured Events Section -->
+    <section class="section">
+        <div class="container">
+            <h2 class="section-headline">Find your next starting line.</h2>
+            <p class="section-copy">Discover endurance events from communities across India.</p>
+
+            <div class="cards">
+                <div class="card">
+                    <div class="card-label">COMING SOON</div>
+                    <div class="card-title">New events will appear here shortly.</div>
+                    <a href="/events" class="card-link">Explore Events</a>
+                </div>
+                <div class="card">
+                    <div class="card-label">COMING SOON</div>
+                    <div class="card-title">New events will appear here shortly.</div>
+                    <a href="/events" class="card-link">Explore Events</a>
+                </div>
+                <div class="card">
+                    <div class="card-label">COMING SOON</div>
+                    <div class="card-title">New events will appear here shortly.</div>
+                    <a href="/events" class="card-link">Explore Events</a>
+                </div>
+            </div>
+
+            <div style="text-align: center; margin-top: 2rem;">
+                <a href="/events" class="btn-primary">Explore all events</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Challenges Section -->
+    <section class="section" style="background: white; border-top: 1px solid var(--border-light); border-bottom: 1px solid var(--border-light);">
+        <div class="container">
+            <h2 class="section-headline">Track the effort behind it.</h2>
+            <p class="section-copy">For supported challenges, connect Strava to have activity counted automatically, follow your progress, and see the leaderboard live.</p>
+
+            <div class="hero-visual">
+                <div class="visual-placeholder">
+                    <div class="visual-placeholder-title">Live Challenge Leaderboard</div>
+                    <div class="visual-placeholder-text">Real-time progress tracking, achievement status, and community rankings powered by your Strava activities.</div>
+                </div>
+            </div>
+
+            <div style="text-align: center; margin-top: 3rem;">
+                <a href="https://hub.beyondmiles.cc" class="btn-primary">Explore Challenges</a>
+            </div>
+
+            <p class="explainer-note">
+                Registration and entry fees are managed by each organiser. Beyond Miles Hub powers challenge tracking and live progress.
+            </p>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="section">
+        <div class="container">
+            <h2 class="section-headline">The people who keep you moving.</h2>
+            <p class="section-copy">Find local services for the endurance community, starting in Bengaluru.</p>
+
+            <div class="cards">
+                <div class="card">
+                    <div class="card-title">Bike Shops</div>
+                    <p class="card-text">Coming soon<br>We are building a useful local directory with people and businesses known to the community.</p>
+                </div>
+                <div class="card">
+                    <div class="card-title">Mechanics</div>
+                    <p class="card-text">Coming soon<br>We are building a useful local directory with people and businesses known to the community.</p>
+                </div>
+                <div class="card">
+                    <div class="card-title">Coaches &amp; Trainers</div>
+                    <p class="card-text">Coming soon<br>We are building a useful local directory with people and businesses known to the community.</p>
+                </div>
+                <div class="card">
+                    <div class="card-title">Bike Fitters</div>
+                    <p class="card-text">Coming soon<br>We are building a useful local directory with people and businesses known to the community.</p>
+                </div>
+                <div class="card">
+                    <div class="card-title">Event Support</div>
+                    <p class="card-text">Coming soon<br>We are building a useful local directory with people and businesses known to the community.</p>
+                </div>
+            </div>
+
+            <div style="text-align: center; margin-top: 2rem;">
+                <a href="/services" class="btn-primary">Explore Services</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- For Organisers Section -->
+    <section class="section organisers" id="organisers">
+        <div class="container">
+            <h2 class="section-headline">Run the event. Leave the tracking behind.</h2>
+            <p class="section-copy">Hub makes tracked challenges simpler—less time chasing spreadsheets, while you continue to manage registrations, payments, and your community in the way that works for you.</p>
+
+            <ul class="benefits-list">
+                <li>Public event listing</li>
+                <li>Strava-connected challenge tracking</li>
+                <li>Automatic participant progress</li>
+                <li>Live leaderboard</li>
+                <li>Downloadable results</li>
+                <li>Registration, payments, and participant communication remain with the organiser</li>
+            </ul>
+
+            <div style="margin-top: 2.5rem;">
+                <a href="mailto:hello@beyondmiles.cc" class="btn-primary">List Your Event</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <h2 class="section-headline">Find your next event. Track the effort behind it.</h2>
+            <div class="hero-actions">
+                <a href="/events" class="btn-primary">Browse Events</a>
+                <a href="https://hub.beyondmiles.cc" class="btn-secondary">Connect Strava</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <div class="footer-brand-name">Beyond Miles Hub</div>
+                    <p class="footer-tagline">India's endurance calendar, built by riders.</p>
+                </div>
+                <div>
+                    <nav class="footer-links">
+                        <a href="/events" class="footer-link">Events</a>
+                        <a href="https://hub.beyondmiles.cc" class="footer-link">Challenges</a>
+                        <a href="/services" class="footer-link">Services</a>
+                        <a href="#organisers" class="footer-link">For Organisers</a>
+                        <a href="#about" class="footer-link">About</a>
+                        <a href="/privacy" class="footer-link">Privacy</a>
+                        <a href="/terms" class="footer-link">Terms</a>
+                    </nav>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p class="footer-proof"><strong>1,000,000+ km</strong> ridden by the Beyond Miles community</p>
+                <p class="footer-copyright">© Beyond Miles Cycling Club</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+        const mobileMenu = document.getElementById('mobileMenu');
+
+        mobileMenuToggle.addEventListener('click', () => {
+            const isExpanded = mobileMenuToggle.getAttribute('aria-expanded') === 'true';
+            mobileMenuToggle.setAttribute('aria-expanded', !isExpanded);
+            mobileMenu.classList.toggle('active');
+        });
+
+        // Header scroll effect
+        const header = document.getElementById('header');
+        let lastScroll = 0;
+
+        window.addEventListener('scroll', () => {
+            const currentScroll = window.pageYOffset;
+            
+            if (currentScroll > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+            
+            lastScroll = currentScroll;
+        });
+
+        // Close mobile menu when clicking a link
+        const mobileNavLinks = document.querySelectorAll('.mobile-nav a');
+        mobileNavLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.remove('active');
+                mobileMenuToggle.setAttribute('aria-expanded', 'false');
+            });
+        });
+
+        // Close mobile menu on escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && mobileMenu.classList.contains('active')) {
+                mobileMenu.classList.remove('active');
+                mobileMenuToggle.setAttribute('aria-expanded', 'false');
+                mobileMenuToggle.focus();
+            }
+        });
+    </script>
+</body>
+</html>
