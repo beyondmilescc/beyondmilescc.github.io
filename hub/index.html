@@ -177,14 +177,41 @@
 
         .mobile-menu {
             display: none;
+            position: fixed;
+            top: 73px;
+            left: 0;
+            right: 0;
             background: var(--warm-white);
             border-bottom: 1px solid var(--border-light);
             padding: 1.5rem;
+            z-index: 999;
+            box-shadow: var(--shadow-card);
+            max-height: calc(100vh - 73px);
+            overflow-y: auto;
         }
 
         .mobile-menu.active {
             display: block;
-            animation: slideDown 0.3s ease;
+            animation: slideDown 0.2s ease;
+        }
+
+        .mobile-menu-backdrop {
+            display: none;
+            position: fixed;
+            top: 73px;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.02);
+            z-index: 998;
+        }
+
+        .mobile-menu-backdrop.active {
+            display: block;
+        }
+
+        body.menu-open {
+            overflow: hidden;
         }
 
         @keyframes slideDown {
@@ -825,19 +852,23 @@
                 </div>
             </button>
         </div>
-
-        <div class="mobile-menu" id="mobileMenu">
-            <nav class="mobile-nav">
-                <a href="#" class="nav-link">Hub Home</a>
-                <a href="/events" class="nav-link">Events</a>
-                <a href="https://hub.beyondmiles.cc" class="nav-link">Challenges</a>
-                <a href="/services" class="nav-link">Services</a>
-                <a href="#organisers" class="nav-link">For Organisers</a>
-                <a href="#about" class="nav-link">About</a>
-                <a href="/events" class="btn-primary">Browse Events</a>
-            </nav>
-        </div>
     </header>
+
+    <!-- Mobile Menu Backdrop -->
+    <div class="mobile-menu-backdrop" id="mobileMenuBackdrop"></div>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <nav class="mobile-nav">
+            <a href="#" class="nav-link">Hub Home</a>
+            <a href="/events" class="nav-link">Events</a>
+            <a href="https://hub.beyondmiles.cc" class="nav-link">Challenges</a>
+            <a href="/services" class="nav-link">Services</a>
+            <a href="#organisers" class="nav-link">For Organisers</a>
+            <a href="#about" class="nav-link">About</a>
+            <a href="/events" class="btn-primary">Browse Events</a>
+        </nav>
+    </div>
 
     <!-- Hero -->
     <section class="hero">
@@ -1061,11 +1092,35 @@
         // Mobile menu toggle
         const mobileMenuToggle = document.getElementById('mobileMenuToggle');
         const mobileMenu = document.getElementById('mobileMenu');
+        const mobileMenuBackdrop = document.getElementById('mobileMenuBackdrop');
+        const body = document.body;
+
+        function openMobileMenu() {
+            mobileMenuToggle.setAttribute('aria-expanded', 'true');
+            mobileMenu.classList.add('active');
+            mobileMenuBackdrop.classList.add('active');
+            body.classList.add('menu-open');
+        }
+
+        function closeMobileMenu() {
+            mobileMenuToggle.setAttribute('aria-expanded', 'false');
+            mobileMenu.classList.remove('active');
+            mobileMenuBackdrop.classList.remove('active');
+            body.classList.remove('menu-open');
+        }
 
         mobileMenuToggle.addEventListener('click', () => {
             const isExpanded = mobileMenuToggle.getAttribute('aria-expanded') === 'true';
-            mobileMenuToggle.setAttribute('aria-expanded', !isExpanded);
-            mobileMenu.classList.toggle('active');
+            if (isExpanded) {
+                closeMobileMenu();
+            } else {
+                openMobileMenu();
+            }
+        });
+
+        // Close mobile menu when clicking backdrop
+        mobileMenuBackdrop.addEventListener('click', () => {
+            closeMobileMenu();
         });
 
         // Header scroll effect
@@ -1088,16 +1143,14 @@
         const mobileNavLinks = document.querySelectorAll('.mobile-nav a');
         mobileNavLinks.forEach(link => {
             link.addEventListener('click', () => {
-                mobileMenu.classList.remove('active');
-                mobileMenuToggle.setAttribute('aria-expanded', 'false');
+                closeMobileMenu();
             });
         });
 
         // Close mobile menu on escape key
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape' && mobileMenu.classList.contains('active')) {
-                mobileMenu.classList.remove('active');
-                mobileMenuToggle.setAttribute('aria-expanded', 'false');
+                closeMobileMenu();
                 mobileMenuToggle.focus();
             }
         });
