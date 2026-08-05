@@ -332,6 +332,92 @@
             margin-bottom: 3rem;
         }
 
+        /* Stats Band */
+        .stats-band {
+            background: #1A1A18;
+            color: #F7F7F5;
+            padding: 3rem 0;
+        }
+
+        .stats-band-title {
+            text-align: center;
+            font-size: 0.8125rem;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: rgba(247, 247, 245, 0.6);
+            margin-bottom: 2.5rem;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 1.5rem;
+            position: relative;
+        }
+
+        .stat-item:not(:last-child)::after {
+            content: '';
+            position: absolute;
+            bottom: -1rem;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 1px;
+            height: 2rem;
+            background: #CBA45C;
+        }
+
+        .stat-value {
+            font-size: 2.5rem;
+            font-weight: 700;
+            line-height: 1;
+            margin-bottom: 0.75rem;
+            color: #F7F7F5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .live-indicator {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .live-dot {
+            width: 8px;
+            height: 8px;
+            background: #1D9E75;
+            border-radius: 50%;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+            50% {
+                opacity: 0.6;
+                transform: scale(1.1);
+            }
+        }
+
+        .stat-label {
+            font-size: 0.9375rem;
+            line-height: 1.5;
+            color: rgba(247, 247, 245, 0.7);
+        }
+
         /* Community Section */
         .community {
             background: white;
@@ -576,6 +662,25 @@
                 grid-template-columns: repeat(2, 1fr);
             }
 
+            .stats-grid {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 0;
+            }
+
+            .stat-item:not(:last-child)::after {
+                bottom: auto;
+                left: auto;
+                right: 0;
+                top: 50%;
+                transform: translateY(-50%);
+                width: 1px;
+                height: 4rem;
+            }
+
+            .stat-value {
+                font-size: 3rem;
+            }
+
             .footer-content {
                 grid-template-columns: 1fr 2fr;
             }
@@ -695,10 +800,34 @@
         </div>
     </section>
 
+    <!-- Stats Band -->
+    <section class="stats-band">
+        <div class="stats-band-title">Moving with the community</div>
+        <div class="stats-grid">
+            <div class="stat-item">
+                <div class="stat-value">1,000,000+</div>
+                <div class="stat-label">kilometres ridden by the Beyond Miles community</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value">150+</div>
+                <div class="stat-label">participants in live tracked challenges</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value">
+                    <span class="live-indicator">
+                        <span class="live-dot"></span>
+                        Live
+                    </span>
+                </div>
+                <div class="stat-label">events, progress, and leaderboards on Hub</div>
+            </div>
+        </div>
+    </section>
+
     <!-- Community Section -->
     <section class="section community" id="about">
         <div class="container">
-            <h2 class="section-headline">Built from the road up.</h2>
+            <h2 class="section-headline">The things that matter, in one place.</h2>
             <p class="section-copy">Built by the team behind Beyond Miles Cycling Club, Hub is shaped by what athletes actually care about—more than numbers: a clear event calendar, brevet history, milestones, and progress that means something.</p>
         </div>
     </section>
@@ -757,6 +886,7 @@
     </section>
 
     <!-- Services Section -->
+    <!--
     <section class="section">
         <div class="container">
             <h2 class="section-headline">The people who keep you moving.</h2>
@@ -790,6 +920,7 @@
             </div>
         </div>
     </section>
+    -->
 
     <!-- For Organisers Section -->
     <section class="section organisers" id="organisers">
