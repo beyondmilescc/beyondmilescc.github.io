@@ -277,18 +277,20 @@
             display: flex;
             flex-wrap: wrap;
             gap: 1rem;
-            margin-bottom: 3rem;
+            margin-bottom: 2rem;
         }
 
         .proof-line {
-            font-size: 0.9375rem;
+            font-size: 1rem;
             color: var(--text-secondary);
             margin-bottom: 3rem;
+            line-height: 1.5;
         }
 
         .proof-line strong {
             color: var(--text-primary);
-            font-weight: 600;
+            font-weight: 700;
+            font-size: 1.0625rem;
         }
 
         .hero-image-panel {
@@ -724,36 +726,50 @@
                 font-size: 4rem;
             }
 
+            .hero {
+                padding: 3.5rem 0 4rem;
+            }
+
             .hero-container {
                 flex-direction: row;
                 align-items: center;
-                gap: 4rem;
+                gap: 3.5rem;
             }
 
             .hero-content {
                 flex: 1.1;
             }
 
-            .hero-image-panel {
-                flex: 1;
-                min-height: 600px;
-                aspect-ratio: 4 / 5;
+            .hero-copy {
+                max-width: 36rem;
             }
 
-            .hero-copy {
-                max-width: 100%;
+            .hero-actions {
+                margin-bottom: 1.5rem;
+            }
+
+            .hero-image-panel {
+                flex: 1;
+                height: clamp(560px, 42vw, 620px);
+                min-height: 0;
+                aspect-ratio: auto;
+            }
+
+            .hero-image {
+                object-position: 66% center;
             }
 
             .proof-line {
                 margin-bottom: 0;
+                font-size: 1rem;
+            }
+
+            .proof-line strong {
+                font-size: 1.125rem;
             }
 
             .section {
                 padding: 6rem 0;
-            }
-
-            .hero {
-                padding: 5rem 0 6rem;
             }
 
             .cards {
@@ -833,8 +849,8 @@
                     <p class="hero-subtitle">India's endurance calendar, built by riders.</p>
                     
                     <div class="hero-copy">
-                        <p>Beyond Miles Hub brings India's endurance community into one place—the events, the progress, and the people behind the miles.</p>
-                        <p style="margin-top: 1rem;">Discover what's happening, join the challenges that matter, and connect Strava to see your effort counted automatically, your progress at a glance, and live leaderboards updated as you go.</p>
+                        <p>Beyond Miles Hub brings India's endurance community into one&nbsp;place—the events, the progress, and the people behind the&nbsp;miles.</p>
+                        <p style="margin-top: 1rem;">Discover what's happening, join the challenges that matter, and connect Strava to see your effort counted automatically, your progress at a glance, and live leaderboards updated as you&nbsp;go.</p>
                     </div>
 
                     <div class="hero-actions">
