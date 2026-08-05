@@ -371,6 +371,142 @@
             max-width: 400px;
         }
 
+        .dashboard-image {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 8px;
+        }
+
+        /* Featured Event Card */
+        .featured-event-card {
+            background: white;
+            border: 1px solid var(--border-light);
+            border-radius: 8px;
+            overflow: hidden;
+            transition: all 0.2s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .featured-event-card:hover {
+            box-shadow: var(--shadow-card);
+            transform: translateY(-2px);
+        }
+
+        .featured-event-poster {
+            width: 100%;
+            background: #F5F5F5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1.5rem;
+        }
+
+        .featured-event-poster img {
+            width: 100%;
+            max-width: 400px;
+            height: auto;
+            object-fit: contain;
+            display: block;
+        }
+
+        .featured-event-details {
+            padding: 2rem;
+        }
+
+        .featured-event-eyebrow {
+            font-size: 0.8125rem;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 1rem;
+        }
+
+        .featured-event-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+            color: var(--text-primary);
+            line-height: 1.3;
+        }
+
+        .featured-event-meta {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .featured-event-meta-item {
+            font-size: 0.9375rem;
+            color: var(--text-secondary);
+        }
+
+        .featured-event-meta-label {
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-right: 0.5rem;
+        }
+
+        /* Challenge Cards */
+        .challenge-cards {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .challenge-card {
+            background: white;
+            border: 1px solid var(--border-light);
+            border-radius: 8px;
+            overflow: hidden;
+            transition: all 0.2s ease;
+        }
+
+        .challenge-card:hover {
+            box-shadow: var(--shadow-card);
+            transform: translateY(-2px);
+        }
+
+        .challenge-poster {
+            width: 100%;
+            background: #F5F5F5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1.5rem;
+        }
+
+        .challenge-poster img {
+            width: 100%;
+            height: auto;
+            object-fit: contain;
+            display: block;
+        }
+
+        .challenge-info {
+            padding: 1.5rem;
+        }
+
+        .challenge-label {
+            font-size: 0.8125rem;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 0.5rem;
+        }
+
+        .challenge-title {
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            line-height: 1.3;
+        }
+
         /* Section Headings */
         .section-headline {
             font-size: 2.25rem;
@@ -718,6 +854,10 @@
                 grid-template-columns: repeat(2, 1fr);
             }
 
+            .challenge-cards {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
             .stats-grid {
                 grid-template-columns: repeat(3, 1fr);
                 gap: 0;
@@ -801,6 +941,22 @@
 
             .cards {
                 grid-template-columns: repeat(3, 1fr);
+            }
+
+            .featured-event-card {
+                flex-direction: row;
+            }
+
+            .featured-event-poster {
+                flex: 0 0 350px;
+                padding: 2rem;
+            }
+
+            .featured-event-details {
+                flex: 1;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
             }
         }
 
@@ -898,10 +1054,7 @@
             </div>
 
             <div class="hero-visual">
-                <div class="visual-placeholder">
-                    <div class="visual-placeholder-title">Challenge Progress Dashboard</div>
-                    <div class="visual-placeholder-text">Connect Strava to see your activities counted automatically, track progress across challenges, and follow live leaderboards.</div>
-                </div>
+                <img src="../assets/images/hub/dashboard.png" alt="Beyond Miles Hub dashboard showing challenge progress and activity tracking" class="dashboard-image">
             </div>
         </div>
     </section>
@@ -944,21 +1097,24 @@
             <h2 class="section-headline">Find your next starting line.</h2>
             <p class="section-copy">Discover endurance events from communities across India.</p>
 
-            <div class="cards">
-                <div class="card">
-                    <div class="card-label">COMING SOON</div>
-                    <div class="card-title">New events will appear here shortly.</div>
-                    <a href="/events" class="card-link">Explore Events</a>
+            <div class="featured-event-card">
+                <div class="featured-event-poster">
+                    <img src="../assets/images/hub/br-goa-600-brm.jpg" alt="BR Goa 600 BRM event poster">
                 </div>
-                <div class="card">
-                    <div class="card-label">COMING SOON</div>
-                    <div class="card-title">New events will appear here shortly.</div>
-                    <a href="/events" class="card-link">Explore Events</a>
-                </div>
-                <div class="card">
-                    <div class="card-label">COMING SOON</div>
-                    <div class="card-title">New events will appear here shortly.</div>
-                    <a href="/events" class="card-link">Explore Events</a>
+                <div class="featured-event-details">
+                    <div class="featured-event-eyebrow">FEATURED EVENT</div>
+                    <h3 class="featured-event-title">BR Goa 600 BRM</h3>
+                    <div class="featured-event-meta">
+                        <div class="featured-event-meta-item">
+                            <span class="featured-event-meta-label">Organiser:</span>
+                            Bangalore Randonneur's
+                        </div>
+                        <div class="featured-event-meta-item">
+                            <span class="featured-event-meta-label">Date:</span>
+                            4 September
+                        </div>
+                    </div>
+                    <a href="/events" class="card-link">View Event</a>
                 </div>
             </div>
 
@@ -974,14 +1130,28 @@
             <h2 class="section-headline">Track the effort behind it.</h2>
             <p class="section-copy">For supported challenges, connect Strava to have activity counted automatically, follow your progress, and see the leaderboard live.</p>
 
-            <div class="hero-visual">
-                <div class="visual-placeholder">
-                    <div class="visual-placeholder-title">Live Challenge Leaderboard</div>
-                    <div class="visual-placeholder-text">Real-time progress tracking, achievement status, and community rankings powered by your Strava activities.</div>
+            <div class="challenge-cards">
+                <div class="challenge-card">
+                    <div class="challenge-poster">
+                        <img src="../assets/images/hub/freedom-to-fitness-challenge.jpg" alt="Freedom to Fitness Challenge">
+                    </div>
+                    <div class="challenge-info">
+                        <div class="challenge-label">ACTIVE CHALLENGE</div>
+                        <h3 class="challenge-title">Freedom to Fitness Challenge</h3>
+                    </div>
+                </div>
+                <div class="challenge-card">
+                    <div class="challenge-poster">
+                        <img src="../assets/images/hub/srt-elevation-challenge.jpg" alt="SRT Elevation Challenge">
+                    </div>
+                    <div class="challenge-info">
+                        <div class="challenge-label">ACTIVE CHALLENGE</div>
+                        <h3 class="challenge-title">SRT Elevation Challenge</h3>
+                    </div>
                 </div>
             </div>
 
-            <div style="text-align: center; margin-top: 3rem;">
+            <div style="text-align: center; margin-top: 1rem;">
                 <a href="https://hub.beyondmiles.cc" class="btn-primary">Explore Challenges</a>
             </div>
 
