@@ -161,6 +161,32 @@
             outline-offset: 2px;
         }
 
+        .btn-organiser {
+            background: var(--gold);
+            color: var(--charcoal);
+            padding: 0.75rem 1.75rem;
+            border-radius: 6px;
+            text-decoration: none;
+            font-size: 0.9375rem;
+            font-weight: 600;
+            border: 1px solid var(--gold);
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: inline-block;
+            min-width: 210px;
+            text-align: center;
+            box-sizing: border-box;
+        }
+
+        .btn-organiser:hover,
+        .btn-organiser:focus {
+            background: #B89147;
+            border-color: #B89147;
+            transform: translateY(-1px);
+            outline: 2px solid var(--gold);
+            outline-offset: 2px;
+        }
+
         .mobile-menu-toggle {
             display: block;
             background: none;
@@ -1078,9 +1104,9 @@
     <!-- Organiser CTA -->
     <section class="organiser-cta">
         <div class="container">
-            <h2 class="organiser-cta-title">List your event. Keep it yours.</h2>
-            <p class="organiser-cta-text">Share your event with the Beyond Miles community. You keep registration, payments, and participant communication. Hub helps people discover what is happening.</p>
-            <a href="mailto:hello@beyondmiles.cc" class="btn-primary">List Your Event</a>
+            <h2 class="organiser-cta-title">Run the event. Hub tracks it.</h2>
+            <p class="organiser-cta-text">List your event on Beyond Miles Hub and give participants automatic progress tracking — every qualifying activity counted from Strava, live leaderboard updated in real time, and results ready to download when it's done. You keep registration, payments, and your community exactly as you run them today.</p>
+            <a href="mailto:hello@beyondmiles.cc" class="btn-organiser">List Your Event →</a>
         </div>
     </section>
 
