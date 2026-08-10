@@ -296,19 +296,13 @@
             max-width: 48rem;
         }
 
-        .hero-note {
-            font-size: 0.875rem;
-            color: var(--text-secondary);
-            font-style: italic;
-        }
-
         /* Filter Bar */
         .filter-bar {
             background: var(--warm-white);
             border-bottom: 1px solid var(--border-light);
             padding: 1rem 0;
             position: sticky;
-            top: 73px;
+            top: 0;
             z-index: 100;
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
         }
@@ -752,7 +746,6 @@
             <div class="eyebrow">BEYOND MILES HUB · EVENTS</div>
             <h1 class="hero-title">Find your next starting line.</h1>
             <p class="hero-subtitle">Discover rides, runs, walks, swims and multi-sport events from endurance communities across India.</p>
-            <p class="hero-note">Registration, payments, and event communication are managed by each organiser.</p>
         </div>
     </section>
 
@@ -1120,6 +1113,20 @@
     </footer>
 
     <script>
+        // Set filter bar position dynamically based on header height
+        const header = document.querySelector('.header');
+        const filterBar = document.querySelector('.filter-bar');
+        
+        function setFilterBarPosition() {
+            if (header && filterBar) {
+                filterBar.style.top = header.offsetHeight + 'px';
+            }
+        }
+        
+        // Set position on load and on resize
+        setFilterBarPosition();
+        window.addEventListener('resize', setFilterBarPosition);
+
         // Mobile menu toggle
         const mobileMenuToggle = document.getElementById('mobileMenuToggle');
         const mobileMenu = document.getElementById('mobileMenu');
@@ -1151,21 +1158,6 @@
 
         mobileMenuBackdrop.addEventListener('click', () => {
             closeMobileMenu();
-        });
-
-        const header = document.getElementById('header');
-        let lastScroll = 0;
-
-        window.addEventListener('scroll', () => {
-            const currentScroll = window.pageYOffset;
-            
-            if (currentScroll > 50) {
-                header.classList.add('scrolled');
-            } else {
-                header.classList.remove('scrolled');
-            }
-            
-            lastScroll = currentScroll;
         });
 
         const mobileNavLinks = document.querySelectorAll('.mobile-nav a');
