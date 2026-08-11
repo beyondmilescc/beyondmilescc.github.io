@@ -162,28 +162,27 @@
         }
 
         .btn-organiser {
-            background: var(--gold);
-            color: var(--charcoal);
-            padding: 0.75rem 1.75rem;
-            border-radius: 6px;
+            background: #CBA45C;
+            color: #1A1A18;
+            padding: 14px 32px;
+            border-radius: 8px;
             text-decoration: none;
             font-size: 0.9375rem;
             font-weight: 600;
-            border: 1px solid var(--gold);
+            border: 1px solid #CBA45C;
             cursor: pointer;
             transition: all 0.2s ease;
             display: inline-block;
-            min-width: 210px;
             text-align: center;
             box-sizing: border-box;
         }
 
         .btn-organiser:hover,
         .btn-organiser:focus {
-            background: #B89147;
-            border-color: #B89147;
+            background: #B8933F;
+            border-color: #B8933F;
             transform: translateY(-1px);
-            outline: 2px solid var(--gold);
+            outline: 2px solid #CBA45C;
             outline-offset: 2px;
         }
 
@@ -590,15 +589,23 @@
             line-height: 1.2;
             letter-spacing: -0.02em;
             margin-bottom: 1.5rem;
-            color: var(--warm-white);
+            color: #F7F7F5;
         }
 
         .organiser-cta-text {
             font-size: 1.125rem;
             line-height: 1.7;
-            color: rgba(247, 247, 245, 0.8);
+            color: #B4B2A9;
             max-width: 42rem;
             margin: 0 auto 2.5rem;
+        }
+
+        .organiser-cta-text p {
+            margin-bottom: 0.75rem;
+        }
+
+        .organiser-cta-text p:last-child {
+            margin-bottom: 0;
         }
 
         /* Footer */
@@ -1104,8 +1111,11 @@
     <!-- Organiser CTA -->
     <section class="organiser-cta">
         <div class="container">
-            <h2 class="organiser-cta-title">Run the event. Hub tracks it.</h2>
-            <p class="organiser-cta-text">List your event on Beyond Miles Hub and give participants automatic progress tracking — every qualifying activity counted from Strava, live leaderboard updated in real time, and results ready to download when it's done. You keep registration, payments, and your community exactly as you run them today.</p>
+            <h2 class="organiser-cta-title">Your event. Automatically tracked.</h2>
+            <div class="organiser-cta-text">
+                <p>Strava-connected tracking for every participant.</p>
+                <p>Live leaderboard. Instant results.</p>
+            </div>
             <a href="mailto:hello@beyondmiles.cc" class="btn-organiser">List Your Event →</a>
         </div>
     </section>
