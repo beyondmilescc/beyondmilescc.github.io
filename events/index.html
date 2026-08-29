@@ -823,6 +823,20 @@
                         <div class="filter-option" data-value="donation">Donation</div>
                     </div>
                 </div>
+                <div class="filter-dropdown">
+                    <button class="filter-button" id="organiserButton" data-filter="organiser">
+                        <span class="filter-label">Organiser</span>
+                    </button>
+                    <div class="filter-panel" id="organiserPanel">
+                        <div class="filter-option selected" data-value="all">All</div>
+                        <div class="filter-option" data-value="beyond-miles-cycling-club">Beyond Miles Cycling Club</div>
+                        <div class="filter-option" data-value="bangalore-randonneurs">Bangalore Randonneurs</div>
+                        <div class="filter-option" data-value="bengaluru-cycling-club">Bengaluru Cycling Club</div>
+                        <div class="filter-option" data-value="cycling-for-change">Cycling for Change</div>
+                        <div class="filter-option" data-value="hhfl-india">HHFL India</div>
+                        <div class="filter-option" data-value="trail-runners-bengaluru">Trail Runners Bengaluru</div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -833,7 +847,7 @@
             <div class="events-grid" id="eventsGrid">
                 
                 <!-- Event 1: BMCC August Distance Challenge -->
-                <article class="event-card" data-sport="multi-sport" data-type="virtual" data-fee="free">
+                <article class="event-card" data-sport="multi-sport" data-type="virtual" data-fee="free" data-organiser="beyond-miles-cycling-club">
                     <div class="event-poster" style="background: linear-gradient(135deg, #CBA45C 0%, #B89147 100%); display: flex; align-items: center; justify-content: center; font-size: 1.5rem; font-weight: 700; color: white; text-align: center; padding: 2rem;">
                         BMCC
                     </div>
@@ -877,7 +891,7 @@
                 </article>
 
                 <!-- Event 2: BR Goa 600 BRM -->
-                <article class="event-card" data-sport="cycling" data-type="brm" data-fee="paid">
+                <article class="event-card" data-sport="cycling" data-type="brm" data-fee="paid" data-organiser="bangalore-randonneurs">
                     <img src="../assets/images/hub/br-goa-600-brm.jpg" alt="BR Goa 600 BRM" class="event-poster">
                     <div class="event-details">
                         <div class="event-badges">
@@ -925,7 +939,7 @@
                 </article>
 
                 <!-- Event 3: Independence Day Ride -->
-                <article class="event-card" data-sport="cycling" data-type="group-ride" data-fee="free">
+                <article class="event-card" data-sport="cycling" data-type="group-ride" data-fee="free" data-organiser="bengaluru-cycling-club">
                     <div class="event-poster" style="background: linear-gradient(135deg, #059669 0%, #047857 100%); display: flex; align-items: center; justify-content: center; font-size: 1.125rem; font-weight: 700; color: white; text-align: center; padding: 2rem;">
                         Independence Day Ride
                     </div>
@@ -963,7 +977,7 @@
                 </article>
 
                 <!-- Event 4: Ride for a Cause – Bengaluru -->
-                <article class="event-card" data-sport="cycling" data-type="charity" data-fee="donation">
+                <article class="event-card" data-sport="cycling" data-type="charity" data-fee="donation" data-organiser="cycling-for-change">
                     <div class="event-poster" style="background: linear-gradient(135deg, #DC2626 0%, #B91C1C 100%); display: flex; align-items: center; justify-content: center; font-size: 1.125rem; font-weight: 700; color: white; text-align: center; padding: 2rem;">
                         Ride for a Cause
                     </div>
@@ -1013,7 +1027,7 @@
                 </article>
 
                 <!-- Event 5: Freedom to Fitness Challenge 2026 -->
-                <article class="event-card" data-sport="multi-sport" data-type="virtual" data-fee="paid">
+                <article class="event-card" data-sport="multi-sport" data-type="virtual" data-fee="paid" data-organiser="hhfl-india">
                     <img src="../assets/images/hub/freedom-to-fitness-challenge.jpg" alt="Freedom to Fitness Challenge 2026" class="event-poster">
                     <div class="event-details">
                         <div class="event-badges">
@@ -1055,7 +1069,7 @@
                 </article>
 
                 <!-- Event 6: Bengaluru Trail Run -->
-                <article class="event-card" data-sport="running" data-type="group-ride" data-fee="paid">
+                <article class="event-card" data-sport="running" data-type="group-ride" data-fee="paid" data-organiser="trail-runners-bengaluru">
                     <div class="event-poster" style="background: linear-gradient(135deg, #2563EB 0%, #1D4ED8 100%); display: flex; align-items: center; justify-content: center; font-size: 1.125rem; font-weight: 700; color: white; text-align: center; padding: 2rem;">
                         Bengaluru Trail Run
                     </div>
@@ -1214,19 +1228,22 @@
         const filters = {
             sport: 'all',
             type: 'all',
-            fee: 'all'
+            fee: 'all',
+            organiser: 'all'
         };
 
         const filterButtons = {
             sport: document.getElementById('sportButton'),
             type: document.getElementById('typeButton'),
-            fee: document.getElementById('feeButton')
+            fee: document.getElementById('feeButton'),
+            organiser: document.getElementById('organiserButton')
         };
 
         const filterPanels = {
             sport: document.getElementById('sportPanel'),
             type: document.getElementById('typePanel'),
-            fee: document.getElementById('feePanel')
+            fee: document.getElementById('feePanel'),
+            organiser: document.getElementById('organiserPanel')
         };
 
         // Toggle dropdown
@@ -1290,12 +1307,14 @@
                 const cardSport = card.getAttribute('data-sport');
                 const cardType = card.getAttribute('data-type');
                 const cardFee = card.getAttribute('data-fee');
+                const cardOrganiser = card.getAttribute('data-organiser');
 
                 const sportMatch = filters.sport === 'all' || cardSport === filters.sport;
                 const typeMatch = filters.type === 'all' || cardType === filters.type;
                 const feeMatch = filters.fee === 'all' || cardFee === filters.fee;
+                const organiserMatch = filters.organiser === 'all' || cardOrganiser === filters.organiser;
 
-                if (sportMatch && typeMatch && feeMatch) {
+                if (sportMatch && typeMatch && feeMatch && organiserMatch) {
                     card.style.display = 'block';
                 } else {
                     card.style.display = 'none';
