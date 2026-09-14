@@ -41,6 +41,10 @@
             scroll-behavior: smooth;
         }
 
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
         @media (prefers-reduced-motion: reduce) {
             html {
                 scroll-behavior: auto;
@@ -847,280 +851,14 @@
     <!-- Events Grid -->
     <section class="section">
         <div class="container">
-            <div class="events-grid" id="eventsGrid">
-                
-                <!-- Event 1: BMCC August Distance Challenge -->
-                <article class="event-card" data-sport="multi-sport" data-type="virtual" data-fee="free" data-organiser="beyond-miles-cycling-club">
-                    <div class="event-poster" style="background: linear-gradient(135deg, #CBA45C 0%, #B89147 100%); display: flex; align-items: center; justify-content: center; font-size: 1.5rem; font-weight: 700; color: white; text-align: center; padding: 2rem;">
-                        BMCC
-                    </div>
-                    <div class="event-details">
-                        <div class="event-badges">
-                            <span class="badge badge-virtual">Virtual</span>
-                            <span class="badge badge-free">Free</span>
-                            <span class="badge badge-sport">Multi-sport</span>
-                            <span class="badge badge-hub">Tracked on Hub</span>
-                        </div>
-                        <h3 class="event-name">BMCC August Distance Challenge</h3>
-                        <p class="event-organiser">By Beyond Miles Cycling Club</p>
-                        <div class="event-meta">
-                            <div class="event-meta-item">
-                                <span class="event-meta-icon">📅</span>
-                                <span class="event-meta-text">Aug 1 – Aug 31 2026</span>
-                            </div>
-                            <div class="event-meta-item">
-                                <span class="event-meta-icon">🌐</span>
-                                <span class="event-meta-text">Virtual</span>
-                            </div>
-                            <div class="event-meta-item">
-                                <span class="event-meta-icon">📏</span>
-                                <span class="event-meta-text">Any distance</span>
-                            </div>
-                            <div class="event-meta-item">
-                                <span class="event-meta-icon">💰</span>
-                                <span class="event-meta-text"><strong>Free</strong></span>
-                            </div>
-                            <div class="event-meta-item">
-                                <span class="event-meta-icon">⏳</span>
-                                <span class="event-meta-text">Registration closes: Jul 31 2026</span>
-                            </div>
-                        </div>
-                        <div class="event-actions">
-                            <a href="mailto:hello@beyondmiles.cc" class="btn-event btn-event-primary">Register with Organiser →</a>
-                            <a href="https://hub.beyondmiles.cc/challenges/bmcc-august-2026" class="btn-event btn-event-hub">Track on Hub →</a>
-                            <button class="btn-share" onclick="shareOnWhatsApp('🏅 *BMCC August Distance Challenge*\nBy Beyond Miles Cycling Club\n\n📅 Aug 1 – Aug 31 2026\n🌐 Virtual\n📏 Any distance\n💰 Free\n⏳ Register by Jul 31 2026\n\n👉 beyondmiles.cc/events/bmcc-august-2026\n\n_Discovered on Beyond Miles Hub_')">📤 Share on WhatsApp</button>
-                        </div>
-                    </div>
-                </article>
-
-                <!-- Event 2: BR Goa 600 BRM -->
-                <article class="event-card" data-sport="cycling" data-type="brm" data-fee="paid" data-organiser="bangalore-randonneurs">
-                    <img src="../assets/images/hub/br-goa-600-brm.jpg" alt="BR Goa 600 BRM" class="event-poster">
-                    <div class="event-details">
-                        <div class="event-badges">
-                            <span class="badge badge-brm">BRM</span>
-                            <span class="badge badge-paid">Paid</span>
-                            <span class="badge badge-sport">Cycling</span>
-                        </div>
-                        <h3 class="event-name">BR Goa 600 BRM</h3>
-                        <p class="event-organiser">By Bangalore Randonneurs</p>
-                        <div class="event-meta">
-                            <div class="event-meta-item">
-                                <span class="event-meta-icon">📅</span>
-                                <span class="event-meta-text">Sep 4 2026 · 05:00</span>
-                            </div>
-                            <div class="event-meta-item">
-                                <span class="event-meta-icon">📍</span>
-                                <span class="event-meta-text">Goa</span>
-                            </div>
-                            <div class="event-meta-item">
-                                <span class="event-meta-icon">📏</span>
-                                <span class="event-meta-text">600km</span>
-                            </div>
-                            <div class="event-meta-item">
-                                <span class="event-meta-icon">💰</span>
-                                <span class="event-meta-text"><strong>₹3,500</strong></span>
-                            </div>
-                            <div class="event-meta-item">
-                                <span class="event-meta-icon">⏳</span>
-                                <span class="event-meta-text">Registration closes: Aug 25 2026</span>
-                            </div>
-                            <div class="event-meta-item">
-                                <span class="event-meta-icon">👥</span>
-                                <span class="event-meta-text">48/100 registered</span>
-                            </div>
-                            <div class="event-meta-item">
-                                <span class="event-meta-icon">🛟</span>
-                                <span class="event-meta-text">Support available</span>
-                            </div>
-                        </div>
-                        <div class="event-actions">
-                            <a href="mailto:hello@beyondmiles.cc" class="btn-event btn-event-primary">Register with Organiser →</a>
-                            <button class="btn-share" onclick="shareOnWhatsApp('🚴 *BR Goa 600 BRM*\nBy Bangalore Randonneurs\n\n📅 Sep 4 2026 · 05:00\n📍 Goa\n📏 600km\n💰 ₹3,500\n🛟 Support available\n⏳ Register by Aug 25 2026\n\n👉 beyondmiles.cc/events/br-goa-600\n\n_Discovered on Beyond Miles Hub_')">📤 Share on WhatsApp</button>
-                        </div>
-                    </div>
-                </article>
-
-                <!-- Event 3: Independence Day Ride -->
-                <article class="event-card" data-sport="cycling" data-type="group-ride" data-fee="free" data-organiser="bengaluru-cycling-club">
-                    <div class="event-poster" style="background: linear-gradient(135deg, #059669 0%, #047857 100%); display: flex; align-items: center; justify-content: center; font-size: 1.125rem; font-weight: 700; color: white; text-align: center; padding: 2rem;">
-                        Independence Day Ride
-                    </div>
-                    <div class="event-details">
-                        <div class="event-badges">
-                            <span class="badge badge-group">Group Ride</span>
-                            <span class="badge badge-free">Free</span>
-                            <span class="badge badge-sport">Cycling</span>
-                        </div>
-                        <h3 class="event-name">Independence Day Ride</h3>
-                        <p class="event-organiser">By Bengaluru Cycling Club</p>
-                        <div class="event-meta">
-                            <div class="event-meta-item">
-                                <span class="event-meta-icon">📅</span>
-                                <span class="event-meta-text">Aug 15 2026 · 06:00</span>
-                            </div>
-                            <div class="event-meta-item">
-                                <span class="event-meta-icon">📍</span>
-                                <span class="event-meta-text">Vidhana Soudha, Bengaluru</span>
-                            </div>
-                            <div class="event-meta-item">
-                                <span class="event-meta-icon">📏</span>
-                                <span class="event-meta-text">50km</span>
-                            </div>
-                            <div class="event-meta-item">
-                                <span class="event-meta-icon">💰</span>
-                                <span class="event-meta-text"><strong>Free</strong></span>
-                            </div>
-                        </div>
-                        <div class="event-actions">
-                            <a href="mailto:hello@beyondmiles.cc" class="btn-event btn-event-primary">Register with Organiser →</a>
-                            <button class="btn-share" onclick="shareOnWhatsApp('🚴 *Independence Day Ride*\nBy Bengaluru Cycling Club\n\n📅 Aug 15 2026 · 06:00\n📍 Vidhana Soudha, Bengaluru\n📏 50km\n💰 Free\n\n👉 beyondmiles.cc/events/independence-day-ride\n\n_Discovered on Beyond Miles Hub_')">📤 Share on WhatsApp</button>
-                        </div>
-                    </div>
-                </article>
-
-                <!-- Event 4: Ride for a Cause – Bengaluru -->
-                <article class="event-card" data-sport="cycling" data-type="charity" data-fee="donation" data-organiser="cycling-for-change">
-                    <div class="event-poster" style="background: linear-gradient(135deg, #DC2626 0%, #B91C1C 100%); display: flex; align-items: center; justify-content: center; font-size: 1.125rem; font-weight: 700; color: white; text-align: center; padding: 2rem;">
-                        Ride for a Cause
-                    </div>
-                    <div class="event-details">
-                        <div class="event-badges">
-                            <span class="badge badge-charity">Charity</span>
-                            <span class="badge badge-donation">Donation</span>
-                            <span class="badge badge-sport">Cycling</span>
-                        </div>
-                        <h3 class="event-name">Ride for a Cause – Bengaluru</h3>
-                        <p class="event-organiser">By Cycling for Change</p>
-                        <div class="event-meta">
-                            <div class="event-meta-item">
-                                <span class="event-meta-icon">📅</span>
-                                <span class="event-meta-text">Sep 20 2026 · 06:30</span>
-                            </div>
-                            <div class="event-meta-item">
-                                <span class="event-meta-icon">📍</span>
-                                <span class="event-meta-text">Cubbon Park, Bengaluru</span>
-                            </div>
-                            <div class="event-meta-item">
-                                <span class="event-meta-icon">📏</span>
-                                <span class="event-meta-text">30km</span>
-                            </div>
-                            <div class="event-meta-item">
-                                <span class="event-meta-icon">💰</span>
-                                <span class="event-meta-text"><strong>Donation</strong></span>
-                            </div>
-                            <div class="event-meta-item">
-                                <span class="event-meta-icon">⏳</span>
-                                <span class="event-meta-text">Registration closes: Sep 15 2026</span>
-                            </div>
-                            <div class="event-meta-item">
-                                <span class="event-meta-icon">👥</span>
-                                <span class="event-meta-text">12/50 registered</span>
-                            </div>
-                            <div class="event-meta-item">
-                                <span class="event-meta-icon">🛟</span>
-                                <span class="event-meta-text">Support available</span>
-                            </div>
-                        </div>
-                        <div class="event-actions">
-                            <a href="mailto:hello@beyondmiles.cc" class="btn-event btn-event-primary">Register with Organiser →</a>
-                            <button class="btn-share" onclick="shareOnWhatsApp('🚴 *Ride for a Cause – Bengaluru*\nBy Cycling for Change\n\n📅 Sep 20 2026 · 06:30\n📍 Cubbon Park, Bengaluru\n📏 30km\n💰 Donation\n🛟 Support available\n⏳ Register by Sep 15 2026\n\n👉 beyondmiles.cc/events/ride-for-a-cause\n\n_Discovered on Beyond Miles Hub_')">📤 Share on WhatsApp</button>
-                        </div>
-                    </div>
-                </article>
-
-                <!-- Event 5: Freedom to Fitness Challenge 2026 -->
-                <article class="event-card" data-sport="multi-sport" data-type="virtual" data-fee="paid" data-organiser="hhfl-india">
-                    <img src="../assets/images/hub/freedom-to-fitness-challenge.jpg" alt="Freedom to Fitness Challenge 2026" class="event-poster">
-                    <div class="event-details">
-                        <div class="event-badges">
-                            <span class="badge badge-virtual">Virtual</span>
-                            <span class="badge badge-paid">Paid</span>
-                            <span class="badge badge-sport">Multi-sport</span>
-                            <span class="badge badge-hub">Tracked on Hub</span>
-                        </div>
-                        <h3 class="event-name">Freedom to Fitness Challenge 2026</h3>
-                        <p class="event-organiser">By HHFL India</p>
-                        <div class="event-meta">
-                            <div class="event-meta-item">
-                                <span class="event-meta-icon">📅</span>
-                                <span class="event-meta-text">Aug 15 – Oct 15 2026</span>
-                            </div>
-                            <div class="event-meta-item">
-                                <span class="event-meta-icon">🌐</span>
-                                <span class="event-meta-text">Virtual</span>
-                            </div>
-                            <div class="event-meta-item">
-                                <span class="event-meta-icon">📏</span>
-                                <span class="event-meta-text">Various</span>
-                            </div>
-                            <div class="event-meta-item">
-                                <span class="event-meta-icon">💰</span>
-                                <span class="event-meta-text"><strong>₹999</strong></span>
-                            </div>
-                            <div class="event-meta-item">
-                                <span class="event-meta-icon">⏳</span>
-                                <span class="event-meta-text">Registration closes: Aug 20 2026</span>
-                            </div>
-                        </div>
-                        <div class="event-actions">
-                            <a href="mailto:hello@beyondmiles.cc" class="btn-event btn-event-primary">Register with Organiser →</a>
-                            <a href="https://hub.beyondmiles.cc/challenges/freedom-to-fitness-2026" class="btn-event btn-event-hub">Track on Hub →</a>
-                            <button class="btn-share" onclick="shareOnWhatsApp('🏅 *Freedom to Fitness Challenge 2026*\nBy HHFL India\n\n📅 Aug 15 – Oct 15 2026\n🌐 Virtual\n📏 Various\n💰 ₹999\n⏳ Register by Aug 20 2026\n\n👉 beyondmiles.cc/events/freedom-to-fitness-2026\n\n_Discovered on Beyond Miles Hub_')">📤 Share on WhatsApp</button>
-                        </div>
-                    </div>
-                </article>
-
-                <!-- Event 6: Bengaluru Trail Run -->
-                <article class="event-card" data-sport="running" data-type="group-ride" data-fee="paid" data-organiser="trail-runners-bengaluru">
-                    <div class="event-poster" style="background: linear-gradient(135deg, #2563EB 0%, #1D4ED8 100%); display: flex; align-items: center; justify-content: center; font-size: 1.125rem; font-weight: 700; color: white; text-align: center; padding: 2rem;">
-                        Bengaluru Trail Run
-                    </div>
-                    <div class="event-details">
-                        <div class="event-badges">
-                            <span class="badge badge-group">Group Ride</span>
-                            <span class="badge badge-paid">Paid</span>
-                            <span class="badge badge-sport">Running</span>
-                        </div>
-                        <h3 class="event-name">Bengaluru Trail Run</h3>
-                        <p class="event-organiser">By Trail Runners Bengaluru</p>
-                        <div class="event-meta">
-                            <div class="event-meta-item">
-                                <span class="event-meta-icon">📅</span>
-                                <span class="event-meta-text">Oct 5 2026 · 06:00</span>
-                            </div>
-                            <div class="event-meta-item">
-                                <span class="event-meta-icon">📍</span>
-                                <span class="event-meta-text">Nandi Hills, Bengaluru</span>
-                            </div>
-                            <div class="event-meta-item">
-                                <span class="event-meta-icon">📏</span>
-                                <span class="event-meta-text">21km</span>
-                            </div>
-                            <div class="event-meta-item">
-                                <span class="event-meta-icon">💰</span>
-                                <span class="event-meta-text"><strong>₹799</strong></span>
-                            </div>
-                            <div class="event-meta-item">
-                                <span class="event-meta-icon">⏳</span>
-                                <span class="event-meta-text">Registration closes: Sep 28 2026</span>
-                            </div>
-                            <div class="event-meta-item">
-                                <span class="event-meta-icon">👥</span>
-                                <span class="event-meta-text">35/100 registered</span>
-                            </div>
-                            <div class="event-meta-item">
-                                <span class="event-meta-icon">🛟</span>
-                                <span class="event-meta-text">Support available</span>
-                            </div>
-                        </div>
-                        <div class="event-actions">
-                            <a href="mailto:hello@beyondmiles.cc" class="btn-event btn-event-primary">Register with Organiser →</a>
-                            <button class="btn-share" onclick="shareOnWhatsApp('🏃 *Bengaluru Trail Run*\nBy Trail Runners Bengaluru\n\n📅 Oct 5 2026 · 06:00\n📍 Nandi Hills, Bengaluru\n📏 21km\n💰 ₹799\n🛟 Support available\n⏳ Register by Sep 28 2026\n\n👉 beyondmiles.cc/events/bengaluru-trail-run\n\n_Discovered on Beyond Miles Hub_')">📤 Share on WhatsApp</button>
-                        </div>
-                    </div>
-                </article>
-
+            <div class="events-grid" id="events-grid">
+                <div id="loading-state" style="grid-column: 1/-1; text-align: center; padding: 4rem 0;">
+                    <div style="width: 32px; height: 32px; border: 2px solid #1A1A18; border-top-color: transparent; border-radius: 50%; animation: spin 0.8s linear infinite; margin: 0 auto 1rem;"></div>
+                    <p style="color: #888780; font-size: 0.875rem;">Loading events...</p>
+                </div>
+                <div id="no-events-state" style="grid-column: 1/-1; text-align: center; padding: 4rem 0; display: none;">
+                    <p style="color: #888780; font-size: 0.875rem;">No events found matching your filters.</p>
+                </div>
             </div>
         </div>
     </section>
@@ -1179,6 +917,9 @@
         // Set position on load and on resize
         setFilterBarPosition();
         window.addEventListener('resize', setFilterBarPosition);
+
+        // Fetch live events from Hub
+        fetchEvents();
 
         // Mobile menu toggle
         const mobileMenuToggle = document.getElementById('mobileMenuToggle');
@@ -1302,27 +1043,171 @@
             Object.values(filterPanels).forEach(panel => panel.classList.remove('active'));
         });
 
-        // Filter events
-        const eventCards = document.querySelectorAll('.event-card');
+        // ── Live events from Hub API ──────────────────────────────────────────
+        let allEvents = [];
+
+        function getSportBadge(sports) {
+            if (!sports || sports.length === 0) return 'multi-sport';
+            const s = sports[0].toLowerCase();
+            if (s === 'ride') return 'cycling';
+            if (s === 'run') return 'running';
+            if (s === 'walk') return 'walking';
+            if (s === 'swim') return 'swimming';
+            return 'multi-sport';
+        }
+
+        function getTypeBadgeClass(type) {
+            if (!type) return '';
+            const t = type.toLowerCase();
+            if (t.includes('brm') || t.includes('brevet') || t.includes('lrm')) return 'badge-brm';
+            if (t.includes('charity')) return 'badge-charity';
+            if (t.includes('virtual')) return 'badge-virtual';
+            if (t.includes('trail')) return 'badge-group';
+            if (t.includes('festival')) return 'badge-festival';
+            return 'badge-group';
+        }
+
+        function getFeeBadgeClass(fee) {
+            if (!fee) return 'badge-free';
+            const f = fee.toLowerCase();
+            if (f === 'free') return 'badge-free';
+            if (f === 'donation') return 'badge-donation';
+            return 'badge-paid';
+        }
+
+        function formatDate(dateStr, timeStr) {
+            if (!dateStr) return '';
+            const d = new Date(dateStr);
+            const options = { day: 'numeric', month: 'short', year: 'numeric' };
+            const dateFormatted = d.toLocaleDateString('en-IN', options);
+            return timeStr ? `${dateFormatted} · ${timeStr}` : dateFormatted;
+        }
+
+        function escapeHtml(value) {
+            return String(value ?? '')
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;')
+                .replace(/"/g, '&quot;');
+        }
+
+        function renderEventCard(event) {
+            const sport = getSportBadge(event.sports);
+            const typeBadgeClass = getTypeBadgeClass(event.event_type);
+            const feeBadgeClass = getFeeBadgeClass(event.fee);
+            const isOnHub = event.is_on_platform && event.challenge_slug;
+            const location = [event.location_name, event.city].filter(Boolean).join(', ');
+            const whatsappText = `🏅 *${event.name}*\nBy ${event.organiser}\n\n📅 ${formatDate(event.start_date, event.start_time)}\n📍 ${location}\n💰 ${event.fee || 'Free'}\n\n👉 beyondmiles.cc/events\n\n_Discovered on Beyond Miles Hub_`;
+
+            const posterHtml = event.poster_url
+                ? `<img src="${escapeHtml(event.poster_url)}" alt="${escapeHtml(event.name)}" class="event-poster" loading="lazy">`
+                : `<div class="event-poster" style="background: linear-gradient(135deg, #1A1A18 0%, #2D2D2D 100%); display: flex; align-items: center; justify-content: center; font-size: 1rem; font-weight: 700; color: white; text-align: center; padding: 2rem; letter-spacing: 0.05em;">${escapeHtml(event.organiser)}</div>`;
+
+            return `
+                <article class="event-card" 
+                    data-sport="${sport}" 
+                    data-type="${(event.event_type || '').toLowerCase().replace(/\s+/g, '-')}" 
+                    data-fee="${(event.fee || 'free').toLowerCase()}"
+                    data-organiser="${(event.organiser || '').toLowerCase().replace(/\s+/g, '-')}">
+                    ${posterHtml}
+                    <div class="event-details">
+                        <div class="event-badges">
+                            ${event.event_type ? `<span class="badge ${typeBadgeClass}">${escapeHtml(event.event_type)}</span>` : ''}
+                            <span class="badge ${feeBadgeClass}">${escapeHtml(event.fee || 'Free')}</span>
+                            ${event.sports && event.sports.length > 0 ? `<span class="badge badge-sport">${escapeHtml(event.sports.join(' + '))}</span>` : ''}
+                            ${isOnHub ? `<span class="badge badge-hub">Tracked on Hub</span>` : ''}
+                        </div>
+                        <h3 class="event-name">${escapeHtml(event.name)}</h3>
+                        <p class="event-organiser">By ${escapeHtml(event.organiser)}</p>
+                        <div class="event-meta">
+                            <div class="event-meta-item">
+                                <span class="event-meta-icon">📅</span>
+                                <span class="event-meta-text">${escapeHtml(formatDate(event.start_date, event.start_time))}</span>
+                            </div>
+                            ${location ? `<div class="event-meta-item">
+                                <span class="event-meta-icon">📍</span>
+                                <span class="event-meta-text">${escapeHtml(location)}</span>
+                            </div>` : ''}
+                            ${event.description ? `<div class="event-meta-item">
+                                <span class="event-meta-icon">ℹ️</span>
+                                <span class="event-meta-text">${escapeHtml(event.description)}</span>
+                            </div>` : ''}
+                            <div class="event-meta-item">
+                                <span class="event-meta-icon">💰</span>
+                                <span class="event-meta-text"><strong>${escapeHtml(event.fee || 'Free')}</strong></span>
+                            </div>
+                            ${event.participant_count ? `<div class="event-meta-item">
+                                <span class="event-meta-icon">👥</span>
+                                <span class="event-meta-text">${escapeHtml(event.participant_count)} registered</span>
+                            </div>` : ''}
+                        </div>
+                        <div class="event-actions">
+                            ${event.registration_url 
+                                ? `<a href="${escapeHtml(event.registration_url)}" target="_blank" rel="noopener" class="btn-event btn-event-primary">Register →</a>`
+                                : event.contact_email 
+                                ? `<a href="mailto:${escapeHtml(event.contact_email)}" class="btn-event btn-event-primary">Register with Organiser →</a>`
+                                : ''}
+                            ${isOnHub ? `<a href="https://hub.beyondmiles.cc/challenges/${encodeURIComponent(event.challenge_slug)}" class="btn-event btn-event-hub">Track on Hub →</a>` : ''}
+                            <button class="btn-share" data-share="${encodeURIComponent(whatsappText)}">📤 Share on WhatsApp</button>
+                        </div>
+                    </div>
+                </article>`;
+        }
+
+        async function fetchEvents() {
+            try {
+                const response = await fetch('https://hub.beyondmiles.cc/api/events');
+                const data = await response.json();
+                allEvents = (data.listings || []).filter(e => e.is_active);
+                // Sort by start date ascending
+                allEvents.sort((a, b) => new Date(a.start_date) - new Date(b.start_date));
+                renderEvents(allEvents);
+            } catch (err) {
+                console.error('Failed to fetch events:', err);
+                document.getElementById('loading-state').innerHTML = '<p style="color:#888780;font-size:0.875rem;">Unable to load events. Please try again later.</p>';
+            }
+        }
+
+        function renderEvents(events) {
+            const grid = document.getElementById('events-grid');
+            const loadingState = document.getElementById('loading-state');
+            const noEventsState = document.getElementById('no-events-state');
+
+            if (events.length === 0) {
+                loadingState.style.display = 'none';
+                noEventsState.style.display = 'block';
+                // Remove any existing cards
+                grid.querySelectorAll('.event-card').forEach(c => c.remove());
+                return;
+            }
+
+            loadingState.style.display = 'none';
+            noEventsState.style.display = 'none';
+
+            // Remove existing cards
+            grid.querySelectorAll('.event-card').forEach(c => c.remove());
+
+            // Add new cards
+            events.forEach(event => {
+                grid.insertAdjacentHTML('beforeend', renderEventCard(event));
+            });
+        }
 
         function filterEvents() {
-            eventCards.forEach(card => {
-                const cardSport = card.getAttribute('data-sport');
-                const cardType = card.getAttribute('data-type');
-                const cardFee = card.getAttribute('data-fee');
-                const cardOrganiser = card.getAttribute('data-organiser');
+            const sport = filters.sport;
+            const type = filters.type;
+            const fee = filters.fee;
+            const organiser = filters.organiser;
 
-                const sportMatch = filters.sport === 'all' || cardSport === filters.sport;
-                const typeMatch = filters.type === 'all' || cardType === filters.type;
-                const feeMatch = filters.fee === 'all' || cardFee === filters.fee;
-                const organiserMatch = filters.organiser === 'all' || cardOrganiser === filters.organiser;
-
-                if (sportMatch && typeMatch && feeMatch && organiserMatch) {
-                    card.style.display = 'block';
-                } else {
-                    card.style.display = 'none';
-                }
+            const filtered = allEvents.filter(event => {
+                const sportMatch = sport === 'all' || getSportBadge(event.sports) === sport;
+                const typeMatch = type === 'all' || (event.event_type || '').toLowerCase().replace(/\s+/g, '-') === type;
+                const feeMatch = fee === 'all' || (event.fee || 'free').toLowerCase() === fee;
+                const organiserMatch = organiser === 'all' || (event.organiser || '').toLowerCase().replace(/\s+/g, '-') === organiser;
+                return sportMatch && typeMatch && feeMatch && organiserMatch;
             });
+
+            renderEvents(filtered);
         }
 
         // WhatsApp share function
@@ -1330,6 +1215,12 @@
             const url = `https://api.whatsapp.com/send?text=${encodeURIComponent(message)}`;
             window.open(url, '_blank');
         }
+
+        document.getElementById('events-grid').addEventListener('click', (e) => {
+            const shareButton = e.target.closest('[data-share]');
+            if (!shareButton) return;
+            shareOnWhatsApp(decodeURIComponent(shareButton.getAttribute('data-share')));
+        });
     </script>
 </body>
 </html>
