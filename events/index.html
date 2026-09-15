@@ -1156,7 +1156,7 @@
 
         async function fetchEvents() {
             try {
-                const response = await fetch('https://hub.beyondmiles.cc/api/events');
+                const response = await fetch('https://hub.beyondmiles.cc/api/listings?event=true&public=true');
                 const data = await response.json();
                 allEvents = (data.listings || []).filter(e => e.is_active);
                 // Sort by start date ascending
