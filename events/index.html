@@ -1091,13 +1091,22 @@
                 .replace(/"/g, '&quot;');
         }
 
+        function hasRealFee(fee) {
+            if (!fee) return false;
+            const value = String(fee).trim();
+            return value !== '' && value.toUpperCase() !== 'NA';
+        }
+
         function renderEventCard(event) {
             const sport = getSportBadge(event.sports);
             const typeBadgeClass = getTypeBadgeClass(event.event_type);
             const feeBadgeClass = getFeeBadgeClass(event.fee);
+            const showFee = hasRealFee(event.fee);
             const isOnHub = event.is_on_platform && event.challenge_slug;
             const location = [event.location_name, event.city].filter(Boolean).join(', ');
-            const whatsappText = `🏅 *${event.name}*\nBy ${event.organiser}\n\n📅 ${formatDate(event.start_date, event.start_time)}\n📍 ${location}\n💰 ${event.fee || 'Free'}\n\n👉 beyondmiles.cc/events\n\n_Discovered on Beyond Miles Hub_`;
+            const whatsappText = showFee
+                ? `🏅 *${event.name}*\nBy ${event.organiser}\n\n📅 ${formatDate(event.start_date, event.start_time)}\n📍 ${location}\n💰 ${event.fee}\n\n👉 beyondmiles.cc/events\n\n_Discovered on Beyond Miles Hub_`
+                : `🏅 *${event.name}*\nBy ${event.organiser}\n\n📅 ${formatDate(event.start_date, event.start_time)}\n📍 ${location}\n\n👉 beyondmiles.cc/events\n\n_Discovered on Beyond Miles Hub_`;
 
             const posterHtml = event.poster_url
                 ? `<img src="${escapeHtml(event.poster_url)}" alt="${escapeHtml(event.name)}" class="event-poster" loading="lazy">`
@@ -1113,7 +1122,7 @@
                     <div class="event-details">
                         <div class="event-badges">
                             ${event.event_type ? `<span class="badge ${typeBadgeClass}">${escapeHtml(event.event_type)}</span>` : ''}
-                            <span class="badge ${feeBadgeClass}">${escapeHtml(event.fee || 'Free')}</span>
+                            ${showFee ? `<span class="badge ${feeBadgeClass}">${escapeHtml(event.fee)}</span>` : ''}
                             ${event.sports && event.sports.length > 0 ? `<span class="badge badge-sport">${escapeHtml(event.sports.join(' + '))}</span>` : ''}
                             ${isOnHub ? `<span class="badge badge-hub">Tracked on Hub</span>` : ''}
                         </div>
@@ -1132,10 +1141,10 @@
                                 <span class="event-meta-icon">ℹ️</span>
                                 <span class="event-meta-text">${escapeHtml(event.description)}</span>
                             </div>` : ''}
-                            <div class="event-meta-item">
+                            ${showFee ? `<div class="event-meta-item">
                                 <span class="event-meta-icon">💰</span>
-                                <span class="event-meta-text"><strong>${escapeHtml(event.fee || 'Free')}</strong></span>
-                            </div>
+                                <span class="event-meta-text"><strong>${escapeHtml(event.fee)}</strong></span>
+                            </div>` : ''}
                             ${event.participant_count ? `<div class="event-meta-item">
                                 <span class="event-meta-icon">👥</span>
                                 <span class="event-meta-text">${escapeHtml(event.participant_count)} registered</span>
