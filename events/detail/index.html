@@ -1,583 +1,282 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Event details on Beyond Miles Hub.">
-    <title>Event details - Beyond Miles Hub</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --warm-white: #F7F7F5;
-            --charcoal: #1A1A18;
-            --charcoal-soft: #2D2D2D;
-            --text-primary: #1A1A18;
-            --text-secondary: #4A4A4A;
-            --gold: #CBA45C;
-            --border-light: #E5E5E3;
-            --shadow-card: 0 2px 8px rgba(0, 0, 0, 0.06);
-            --badge-hub: #1D9E75;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        @keyframes spin {
-            to { transform: rotate(360deg); }
-        }
-
-        body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-            background-color: var(--warm-white);
-            color: var(--text-primary);
-            line-height: 1.6;
-            -webkit-font-smoothing: antialiased;
-        }
-
-        .header {
-            background: #FFFFFF;
-            border-bottom: 1px solid var(--border-light);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-        }
-
-        .header-container {
-            max-width: 960px;
-            margin: 0 auto;
-            padding: 1rem 1.5rem;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-
-        .logo {
-            font-size: 1.125rem;
-            font-weight: 600;
-            color: var(--text-primary);
-            text-decoration: none;
-        }
-
-        .nav-desktop {
-            display: none;
-            gap: 1.75rem;
-            align-items: center;
-        }
-
-        .nav-link {
-            color: var(--text-secondary);
-            text-decoration: none;
-            font-size: 0.9375rem;
-            font-weight: 500;
-        }
-
-        .nav-link:hover,
-        .nav-link.active {
-            color: var(--text-primary);
-        }
-
-        .nav-link.active {
-            font-weight: 600;
-        }
-
-        .btn-primary {
-            background: var(--charcoal);
-            color: white;
-            padding: 0.625rem 1.25rem;
-            border-radius: 6px;
-            text-decoration: none;
-            font-size: 0.875rem;
-            font-weight: 600;
-            border: 1px solid var(--charcoal);
-        }
-
-        .mobile-menu-toggle {
-            display: block;
-            background: none;
-            border: none;
-            cursor: pointer;
-            padding: 0.5rem;
-        }
-
-        .hamburger {
-            display: flex;
-            flex-direction: column;
-            gap: 4px;
-        }
-
-        .hamburger span {
-            width: 24px;
-            height: 2px;
-            background: var(--text-primary);
-        }
-
-        .mobile-menu {
-            display: none;
-            position: fixed;
-            top: 73px;
-            left: 0;
-            right: 0;
-            background: #FFFFFF;
-            border-bottom: 1px solid var(--border-light);
-            padding: 1.5rem;
-            z-index: 999;
-        }
-
-        .mobile-menu.active {
-            display: block;
-        }
-
-        .mobile-nav {
-            display: flex;
-            flex-direction: column;
-            gap: 0.25rem;
-        }
-
-        .mobile-nav .nav-link {
-            padding: 0.75rem 0;
-            border-bottom: 1px solid var(--border-light);
-        }
-
-        .container {
-            max-width: 960px;
-            margin: 0 auto;
-            padding: 0 1.5rem;
-        }
-
-        .page {
-            padding: 2rem 0 4rem;
-        }
-
-        .back-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.35rem;
-            color: var(--text-secondary);
-            text-decoration: none;
-            font-size: 0.875rem;
-            font-weight: 500;
-            margin-bottom: 1.5rem;
-        }
-
-        .back-link:hover {
-            color: var(--text-primary);
-        }
-
-        .status {
-            text-align: center;
-            padding: 4rem 0;
-            color: #888780;
-            font-size: 0.9375rem;
-        }
-
-        .spinner {
-            width: 32px;
-            height: 32px;
-            border: 2px solid #1A1A18;
-            border-top-color: transparent;
-            border-radius: 50%;
-            animation: spin 0.8s linear infinite;
-            margin: 0 auto 1rem;
-        }
-
-        .detail-card {
-            background: #FFFFFF;
-            border: 1px solid var(--border-light);
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: var(--shadow-card);
-        }
-
-        .poster {
-            width: 100%;
-            max-height: 420px;
-            object-fit: cover;
-            display: block;
-            background: #F0EFEC;
-        }
-
-        .poster-fallback {
-            height: 220px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: linear-gradient(135deg, #1A1A18 0%, #2D2D2D 100%);
-            color: white;
-            font-weight: 700;
-            letter-spacing: 0.04em;
-            text-align: center;
-            padding: 2rem;
-        }
-
-        .detail-body {
-            padding: 1.75rem 1.5rem 2rem;
-        }
-
-        .badges {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-            margin-bottom: 1rem;
-        }
-
-        .badge {
-            padding: 0.25rem 0.625rem;
-            border-radius: 4px;
-            font-size: 0.6875rem;
-            font-weight: 600;
-            letter-spacing: 0.05em;
-            text-transform: uppercase;
-            color: white;
-            background: var(--charcoal);
-        }
-
-        .badge-sport {
-            background: var(--warm-white);
-            color: var(--text-secondary);
-            border: 1px solid var(--border-light);
-        }
-
-        .event-name {
-            font-size: 1.75rem;
-            font-weight: 700;
-            line-height: 1.2;
-            letter-spacing: -0.02em;
-            margin-bottom: 0.5rem;
-        }
-
-        .organiser {
-            font-size: 1rem;
-            color: var(--text-secondary);
-            margin-bottom: 1.5rem;
-        }
-
-        .meta {
-            display: flex;
-            flex-direction: column;
-            gap: 0.65rem;
-            margin-bottom: 1.75rem;
-        }
-
-        .meta-item {
-            display: flex;
-            gap: 0.5rem;
-            font-size: 0.975rem;
-            color: var(--text-secondary);
-        }
-
-        .meta-item strong {
-            color: var(--text-primary);
-        }
-
-        .actions {
-            display: flex;
-            flex-direction: column;
-            gap: 0.75rem;
-            margin-bottom: 1.75rem;
-        }
-
-        .btn-register {
-            display: block;
-            text-align: center;
-            padding: 0.875rem 1.25rem;
-            background: #1A1A18;
-            color: white;
-            border-radius: 8px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 0.9375rem;
-        }
-
-        .btn-register:hover {
-            background: #000;
-        }
-
-        .accordion {
-            border-top: 1px solid var(--border-light);
-        }
-
-        .accordion-item {
-            border-bottom: 1px solid var(--border-light);
-        }
-
-        .accordion-btn {
-            width: 100%;
-            background: none;
-            border: none;
-            text-align: left;
-            padding: 1rem 0;
-            font-size: 0.9375rem;
-            font-weight: 600;
-            color: var(--text-primary);
-            cursor: pointer;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-family: inherit;
-        }
-
-        .accordion-btn span {
-            color: var(--text-secondary);
-            font-weight: 400;
-            font-size: 1.25rem;
-            line-height: 1;
-        }
-
-        .accordion-panel {
-            display: none;
-            padding: 0 0 1.15rem;
-            color: var(--text-secondary);
-            font-size: 0.9375rem;
-            white-space: pre-wrap;
-        }
-
-        .accordion-item.open .accordion-panel {
-            display: block;
-        }
-
-        .accordion-item.open .accordion-btn span {
-            transform: rotate(45deg);
-        }
-
-        .hub-link {
-            display: inline-block;
-            margin-top: 1.5rem;
-            color: #888780;
-            font-size: 0.8125rem;
-            text-decoration: none;
-        }
-
-        .hub-link:hover {
-            color: var(--text-primary);
-        }
-
-        .footer {
-            background: var(--charcoal-soft);
-            color: var(--warm-white);
-            padding: 2.5rem 0 2rem;
-        }
-
-        .footer-brand-name {
-            font-weight: 600;
-            margin-bottom: 0.35rem;
-        }
-
-        .footer-tagline,
-        .footer-copyright {
-            font-size: 0.875rem;
-            color: rgba(250, 249, 247, 0.7);
-        }
-
-        .footer-copyright {
-            margin-top: 1.5rem;
-            padding-top: 1.25rem;
-            border-top: 1px solid rgba(250, 249, 247, 0.1);
-        }
-
-        @media (min-width: 768px) {
-            .nav-desktop { display: flex; }
-            .mobile-menu-toggle { display: none; }
-            .event-name { font-size: 2.25rem; }
-            .detail-body { padding: 2.25rem; }
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Event Details - Beyond Miles Hub</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; 
+      background: #F7F7F5; color: #1A1A18; }
+    
+    /* Nav */
+    nav { background: white; border-bottom: 1px solid #f0f0f0; 
+      padding: 16px 24px; display: flex; align-items: center; 
+      justify-content: space-between; }
+    .nav-brand { font-size: 18px; font-weight: 700; color: #1A1A18; 
+      text-decoration: none; }
+    .nav-back { font-size: 13px; padding: 7px 14px; border-radius: 999px; 
+      border: 1px solid #EBEBEA; background: #F7F7F5; color: #1A1A18; 
+      text-decoration: none; font-weight: 500; }
+    .nav-back:hover { background: #F0EFED; }
+    
+    /* Content */
+    .container { max-width: 760px; margin: 0 auto; padding: 24px 16px; }
+    
+    /* Poster */
+    .poster { width: 100%; border-radius: 16px; display: block; 
+      margin-bottom: 24px; border: 1px solid #EBEBEA; }
+    
+    /* Organiser */
+    .organiser-row { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; }
+    .organiser-logo { width: 44px; height: 44px; border-radius: 8px; 
+      object-fit: contain; border: 1px solid #EBEBEA; padding: 4px; background: white; }
+    .organiser-label { font-size: 11px; color: #888780; font-weight: 500; }
+    .organiser-name { font-size: 14px; font-weight: 700; color: #1A1A18; }
+    
+    /* Event name */
+    .event-name { font-size: 26px; font-weight: 800; line-height: 1.2; 
+      margin-bottom: 12px; color: #1A1A18; }
+    
+    /* Badges */
+    .badges { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px; }
+    .badge { font-size: 11px; font-weight: 600; padding: 4px 10px; 
+      border-radius: 999px; }
+    .badge-type { background: #F0EFED; color: #5F5E5A; }
+    .badge-ride { background: #EFF6FF; color: #2563EB; }
+    .badge-run { background: #FEF2F2; color: #E8430A; }
+    .badge-walk { background: #FFFBEB; color: #B45309; }
+    .badge-swim { background: #F5F3FF; color: #7C3AED; }
+    
+    /* Info card */
+    .info-card { background: white; border-radius: 14px; padding: 20px; 
+      border: 1px solid #EBEBEA; margin-bottom: 20px; 
+      display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .info-label { font-size: 10px; font-weight: 700; color: #888780; 
+      text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 4px; }
+    .info-value { font-size: 14px; font-weight: 600; color: #1A1A18; }
+    
+    /* Buttons */
+    .btn-row { display: flex; gap: 10px; margin-bottom: 8px; }
+    .btn-register { flex: 1; display: block; text-align: center; padding: 13px; 
+      border-radius: 10px; background: #1A1A18; color: white; 
+      font-weight: 700; font-size: 14px; text-decoration: none; }
+    .btn-register:hover { background: #333; }
+    .btn-hub { flex: 1; display: block; text-align: center; padding: 13px; 
+      border-radius: 10px; background: #F0FDF4; color: #16A34A; 
+      font-weight: 700; font-size: 14px; text-decoration: none; 
+      border: 1px solid #BBF7D0; }
+    .btn-hub:hover { background: #DCFCE7; }
+    
+    /* Accordions */
+    .accordions { background: white; border-radius: 14px; 
+      border: 1px solid #EBEBEA; overflow: hidden; margin-top: 20px; }
+    .accordion-item { border-bottom: 1px solid #F0F0F0; }
+    .accordion-item:last-child { border-bottom: none; }
+    .accordion-btn { width: 100%; display: flex; align-items: center; 
+      justify-content: space-between; padding: 16px 20px; background: none; 
+      border: none; cursor: pointer; font-size: 14px; font-weight: 600; 
+      color: #1A1A18; text-align: left; }
+    .accordion-btn:hover { background: #F7F7F5; }
+    .accordion-arrow { font-size: 16px; color: #888780; 
+      transition: transform 0.2s; display: inline-block; }
+    .accordion-arrow.open { transform: rotate(180deg); }
+    .accordion-content { display: none; padding: 0 20px 16px; 
+      font-size: 13px; color: #5F5E5A; line-height: 1.7; }
+    .accordion-content.open { display: block; }
+    .accordion-content h2 { font-size: 14px; font-weight: 700; 
+      color: #1A1A18; margin: 12px 0 6px; }
+    .accordion-content h3 { font-size: 13px; font-weight: 600; 
+      color: #1A1A18; margin: 10px 0 4px; }
+    .accordion-content ul { padding-left: 18px; margin: 6px 0; }
+    .accordion-content li { margin: 4px 0; }
+    .accordion-content p { margin: 6px 0; }
+    .accordion-content strong { font-weight: 700; color: #1A1A18; }
+    
+    /* Loading */
+    .loading { text-align: center; padding: 60px 20px; color: #888780; }
+    
+    @media (max-width: 640px) {
+      .info-card { grid-template-columns: 1fr 1fr; }
+      .event-name { font-size: 22px; }
+      nav { padding: 12px 16px; }
+    }
+  </style>
 </head>
 <body>
-    <header class="header">
-        <div class="header-container">
-            <a href="/" class="logo">Beyond Miles Hub</a>
-            <nav class="nav-desktop">
-                <a href="/" class="nav-link">Hub Home</a>
-                <a href="/events/" class="nav-link active">Events</a>
-                <a href="/challenges/" class="nav-link">Challenges</a>
-                <a href="/events/" class="btn-primary">Browse Events</a>
-            </nav>
-            <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Toggle mobile menu" aria-expanded="false">
-                <div class="hamburger"><span></span><span></span><span></span></div>
-            </button>
+
+<nav>
+  <a href="/events" class="nav-brand">Beyond Miles Hub</a>
+  <a href="/events" class="nav-back">← Events</a>
+</nav>
+
+<div class="container">
+  <div class="loading" id="loading">Loading event...</div>
+  <div id="content" style="display:none"></div>
+</div>
+
+<script>
+  function getSlug() {
+    const params = new URLSearchParams(window.location.search)
+    return params.get('slug') || 
+      window.location.pathname.split('/').filter(Boolean).pop()
+  }
+
+  function formatDate(d) {
+    if (!d) return ''
+    return new Date(d).toLocaleDateString('en-IN', { 
+      day: 'numeric', month: 'short', year: 'numeric' 
+    })
+  }
+
+  function sportBadgeClass(sport) {
+    const map = { Ride: 'badge-ride', Run: 'badge-run', 
+      Walk: 'badge-walk', Swim: 'badge-swim' }
+    return map[sport] || ''
+  }
+
+  function toggleAccordion(btn) {
+    const arrow = btn.querySelector('.accordion-arrow')
+    const content = btn.nextElementSibling
+    const isOpen = content.classList.contains('open')
+    // Close all
+    document.querySelectorAll('.accordion-content').forEach(c => c.classList.remove('open'))
+    document.querySelectorAll('.accordion-arrow').forEach(a => a.classList.remove('open'))
+    // Open clicked if was closed
+    if (!isOpen) {
+      content.classList.add('open')
+      arrow.classList.add('open')
+    }
+  }
+
+  async function loadEvent() {
+    const slug = getSlug()
+    if (!slug) {
+      document.getElementById('loading').textContent = 'Event not found.'
+      return
+    }
+
+    try {
+      const res = await fetch(`https://hub.beyondmiles.cc/api/events/${slug}`)
+      if (!res.ok) throw new Error('Not found')
+      const { listing: e, participant_count } = await res.json()
+
+      document.title = `${e.name} - Beyond Miles Hub`
+
+      const sports = e.sports || []
+      const fee = e.fee && e.fee.toUpperCase() !== 'NA' ? e.fee : null
+      const dateStr = e.start_date === e.end_date 
+        ? formatDate(e.start_date)
+        : `${formatDate(e.start_date)} – ${formatDate(e.end_date)}`
+
+      let html = ''
+
+      // Poster
+      if (e.poster_url) {
+        html += `<img src="${e.poster_url}" class="poster" alt="${e.name}">`
+      }
+
+      // Organiser
+      html += `<div class="organiser-row">`
+      if (e.organiser_logo_url) {
+        html += `<img src="${e.organiser_logo_url}" class="organiser-logo" alt="${e.organiser}">`
+      }
+      html += `<div>
+        <div class="organiser-label">Organised by</div>
+        <div class="organiser-name">${e.organiser}</div>
+      </div></div>`
+
+      // Event name
+      html += `<h1 class="event-name">${e.name}</h1>`
+
+      // Badges
+      html += `<div class="badges">`
+      if (e.event_type) html += `<span class="badge badge-type">${e.event_type}</span>`
+      sports.forEach(s => {
+        html += `<span class="badge ${sportBadgeClass(s)}">${s}</span>`
+      })
+      html += `</div>`
+
+      // Info card
+      html += `<div class="info-card">
+        <div><div class="info-label">Date</div><div class="info-value">${dateStr}</div></div>`
+      if (e.city) {
+        html += `<div><div class="info-label">Location</div><div class="info-value">${e.city}${e.state ? ', ' + e.state : ''}</div></div>`
+      }
+      if (fee) {
+        html += `<div><div class="info-label">Fee</div><div class="info-value">${fee}</div></div>`
+      }
+      html += `<div><div class="info-label">Participants</div>
+        <div class="info-value">${participant_count > 0 ? participant_count + ' registered' : 'Open'}${e.max_participants ? ' / ' + e.max_participants + ' max' : ''}</div></div>`
+      html += `</div>`
+
+      // Buttons
+      html += `<div class="btn-row">`
+      if (e.registration_url) {
+        html += `<a href="${e.registration_url}" target="_blank" class="btn-register">Register →</a>`
+      }
+      if (e.is_challenge) {
+        html += `<a href="https://hub.beyondmiles.cc/challenges/${e.slug}" class="btn-hub">Track on Hub</a>`
+      }
+      html += `</div>`
+
+      // Accordions
+      html += `<div class="accordions">`
+
+      if (e.description) {
+        html += `<div class="accordion-item">
+          <button class="accordion-btn" onclick="toggleAccordion(this)">
+            About this event <span class="accordion-arrow">›</span>
+          </button>
+          <div class="accordion-content open">${e.description}</div>
+        </div>`
+      }
+
+      if (e.rules) {
+        html += `<div class="accordion-item">
+          <button class="accordion-btn" onclick="toggleAccordion(this)">
+            Rules & Criteria <span class="accordion-arrow">›</span>
+          </button>
+          <div class="accordion-content">${e.rules}</div>
+        </div>`
+      }
+
+      if (e.finisher_awards) {
+        html += `<div class="accordion-item">
+          <button class="accordion-btn" onclick="toggleAccordion(this)">
+            Finisher Awards <span class="accordion-arrow">›</span>
+          </button>
+          <div class="accordion-content">${e.finisher_awards}</div>
+        </div>`
+      }
+
+      html += `<div class="accordion-item">
+        <button class="accordion-btn" onclick="toggleAccordion(this)">
+          Contact & Registration <span class="accordion-arrow">›</span>
+        </button>
+        <div class="accordion-content">
+          <p><strong>Organiser:</strong> ${e.organiser}</p>
+          ${e.contact_email ? `<p><strong>Email:</strong> <a href="mailto:${e.contact_email}">${e.contact_email}</a></p>` : ''}
+          ${e.registration_url ? `<p><strong>Registration:</strong> <a href="${e.registration_url}" target="_blank">Click here to register</a></p>` : ''}
+          <p style="margin-top:12px;color:#888780;font-size:12px;">
+            Include your Strava Profile URL in the registration form to enable progress tracking on Beyond Miles Hub.
+          </p>
         </div>
-    </header>
+      </div>`
 
-    <div class="mobile-menu" id="mobileMenu">
-        <nav class="mobile-nav">
-            <a href="/" class="nav-link">Hub Home</a>
-            <a href="/events/" class="nav-link active">Events</a>
-            <a href="/challenges/" class="nav-link">Challenges</a>
-        </nav>
-    </div>
+      html += `</div>` // end accordions
 
-    <main class="page">
-        <div class="container">
-            <a href="/events/" class="back-link">← All events</a>
-            <div id="app">
-                <div class="status">
-                    <div class="spinner"></div>
-                    <p>Loading event...</p>
-                </div>
-            </div>
-        </div>
-    </main>
+      document.getElementById('loading').style.display = 'none'
+      document.getElementById('content').style.display = 'block'
+      document.getElementById('content').innerHTML = html
 
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-brand-name">Beyond Miles Hub</div>
-            <p class="footer-tagline">India's endurance calendar, built by riders.</p>
-            <p class="footer-copyright">© Beyond Miles Cycling Club</p>
-        </div>
-    </footer>
+    } catch(err) {
+      document.getElementById('loading').innerHTML = 
+        '🏃 Event not found. <a href="/events">← Back to events</a>'
+    }
+  }
 
-    <script>
-        const app = document.getElementById('app');
-
-        document.getElementById('mobileMenuToggle').addEventListener('click', () => {
-            const menu = document.getElementById('mobileMenu');
-            const open = menu.classList.toggle('active');
-            document.getElementById('mobileMenuToggle').setAttribute('aria-expanded', String(open));
-        });
-
-        function getSlug() {
-            const params = new URLSearchParams(window.location.search);
-            if (params.get('slug')) return params.get('slug').trim();
-            const parts = window.location.pathname.split('/').filter(Boolean);
-            const last = parts[parts.length - 1];
-            if (last && last !== 'detail' && last !== 'index.html') return last;
-            return '';
-        }
-
-        function escapeHtml(value) {
-            return String(value ?? '')
-                .replace(/&/g, '&amp;')
-                .replace(/</g, '&lt;')
-                .replace(/>/g, '&gt;')
-                .replace(/"/g, '&quot;');
-        }
-
-        function hasRealFee(fee) {
-            if (!fee) return false;
-            const value = String(fee).trim();
-            return value !== '' && value.toUpperCase() !== 'NA';
-        }
-
-        function formatDate(dateStr, timeStr) {
-            if (!dateStr) return '';
-            const d = new Date(dateStr);
-            if (Number.isNaN(d.getTime())) return dateStr;
-            const dateFormatted = d.toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' });
-            return timeStr ? `${dateFormatted} · ${timeStr}` : dateFormatted;
-        }
-
-        function formatDateRange(start, end, timeStr) {
-            const startLabel = formatDate(start, timeStr);
-            if (!end || end === start) return startLabel;
-            const endLabel = formatDate(end);
-            return startLabel && endLabel ? `${startLabel} – ${endLabel}` : startLabel || endLabel;
-        }
-
-        function contactBlock(event) {
-            const lines = [];
-            if (event.contact_email) lines.push(`Email: ${event.contact_email}`);
-            if (event.organiser_whatsapp) lines.push(`WhatsApp: ${event.organiser_whatsapp}`);
-            if (event.organiser_instagram) lines.push(`Instagram: ${event.organiser_instagram}`);
-            if (event.organiser) lines.push(`Organiser: ${event.organiser}`);
-            return lines.join('\n');
-        }
-
-        function renderEvent(event, participantCount) {
-            const location = [event.location_name, event.city, event.state].filter(Boolean).join(', ');
-            const showFee = hasRealFee(event.fee);
-            const count = participantCount ?? event.participant_count;
-            const participants = count
-                ? (event.max_participants ? `${count}/${event.max_participants} registered` : `${count} registered`)
-                : '';
-            const sports = Array.isArray(event.sports) ? event.sports.join(' + ') : '';
-            const contact = contactBlock(event);
-            const registerHref = event.registration_url
-                ? event.registration_url
-                : (event.contact_email ? `mailto:${event.contact_email}` : '');
-            const registerLabel = event.registration_url ? 'Register →' : 'Register with Organiser →';
-            const hubHref = event.is_challenge
-                ? `https://hub.beyondmiles.cc/challenges/${encodeURIComponent(event.slug)}`
-                : `https://hub.beyondmiles.cc/events/${encodeURIComponent(event.slug)}`;
-
-            document.title = `${event.name} - Beyond Miles Hub`;
-
-            const poster = event.poster_url
-                ? `<img class="poster" src="${escapeHtml(event.poster_url)}" alt="${escapeHtml(event.name)}">`
-                : `<div class="poster-fallback">${escapeHtml(event.organiser || 'Beyond Miles Hub')}</div>`;
-
-            app.innerHTML = `
-                <article class="detail-card">
-                    ${poster}
-                    <div class="detail-body">
-                        <div class="badges">
-                            ${event.event_type ? `<span class="badge">${escapeHtml(event.event_type)}</span>` : ''}
-                            ${showFee ? `<span class="badge">${escapeHtml(event.fee)}</span>` : ''}
-                            ${sports ? `<span class="badge badge-sport">${escapeHtml(sports)}</span>` : ''}
-                        </div>
-                        <h1 class="event-name">${escapeHtml(event.name)}</h1>
-                        <p class="organiser">By ${escapeHtml(event.organiser || 'Organiser')}</p>
-                        <div class="meta">
-                            ${event.start_date ? `<div class="meta-item">📅 <span>${escapeHtml(formatDateRange(event.start_date, event.end_date, event.start_time))}</span></div>` : ''}
-                            ${location ? `<div class="meta-item">📍 <span>${escapeHtml(location)}</span></div>` : ''}
-                            ${showFee ? `<div class="meta-item">💰 <span><strong>${escapeHtml(event.fee)}</strong></span></div>` : ''}
-                            ${participants ? `<div class="meta-item">👥 <span>${escapeHtml(participants)}</span></div>` : ''}
-                            ${event.description ? `<div class="meta-item">ℹ️ <span>${escapeHtml(event.description)}</span></div>` : ''}
-                        </div>
-                        <div class="actions">
-                            ${registerHref ? `<a class="btn-register" href="${escapeHtml(registerHref)}" ${event.registration_url ? 'target="_blank" rel="noopener"' : ''}>${registerLabel}</a>` : ''}
-                        </div>
-                        <div class="accordion">
-                            ${event.rules ? `<div class="accordion-item">
-                                <button class="accordion-btn" type="button">Rules <span>+</span></button>
-                                <div class="accordion-panel">${escapeHtml(event.rules)}</div>
-                            </div>` : ''}
-                            ${event.finisher_awards ? `<div class="accordion-item">
-                                <button class="accordion-btn" type="button">Finisher awards <span>+</span></button>
-                                <div class="accordion-panel">${escapeHtml(event.finisher_awards)}</div>
-                            </div>` : ''}
-                            ${contact ? `<div class="accordion-item">
-                                <button class="accordion-btn" type="button">Contact <span>+</span></button>
-                                <div class="accordion-panel">${escapeHtml(contact)}</div>
-                            </div>` : ''}
-                        </div>
-                        ${event.slug ? `<a class="hub-link" href="${hubHref}" target="_blank" rel="noopener">Track on Hub →</a>` : ''}
-                    </div>
-                </article>
-            `;
-
-            app.querySelectorAll('.accordion-btn').forEach((btn) => {
-                btn.addEventListener('click', () => {
-                    btn.parentElement.classList.toggle('open');
-                });
-            });
-        }
-
-        async function loadEvent() {
-            const slug = getSlug();
-            if (!slug) {
-                app.innerHTML = '<div class="status"><p>No event selected. <a href="/events/">Browse events</a></p></div>';
-                return;
-            }
-
-            try {
-                const response = await fetch(`https://hub.beyondmiles.cc/api/events/${encodeURIComponent(slug)}`);
-                if (!response.ok) throw new Error('not found');
-                const data = await response.json();
-                const event = data.listing || data.event || data;
-                if (!event || !event.name) throw new Error('empty');
-                renderEvent(event, data.participant_count);
-            } catch (err) {
-                console.error(err);
-                app.innerHTML = '<div class="status"><p>Unable to load this event. <a href="/events/">Back to events</a></p></div>';
-            }
-        }
-
-        loadEvent();
-    </script>
+  loadEvent()
+</script>
 </body>
 </html>
